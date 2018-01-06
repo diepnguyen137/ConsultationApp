@@ -131,8 +131,8 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				8CE074D52000D93200801C14 /* Controller */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
-				841EFED61FF28975003CD9BF /* ViewController.swift */,
 				841EFED81FF28975003CD9BF /* Main.storyboard */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
 				841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */,
@@ -159,6 +159,15 @@
 				841EFEF91FF28976003CD9BF /* Info.plist */,
 			);
 			path = ConsultationAppUITests;
+			sourceTree = "<group>";
+		};
+		8CE074D52000D93200801C14 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				841EFED61FF28975003CD9BF /* ViewController.swift */,
+			);
+			name = Controller;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		ECEAF53C67DEC8EDB909A7FC /* Frameworks */ = {
@@ -641,7 +650,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QW82SAXZD;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConsultationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
@@ -657,7 +666,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6QW82SAXZD;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConsultationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
