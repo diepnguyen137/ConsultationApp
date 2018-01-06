@@ -8,12 +8,26 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class MessagesController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Compose new message
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
+        
+        // Logout Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+    }
+    
+    // MARK: New Message
+    @objc func handleNewMessage(){
+        print("NewMessage: Pressed")
+        
+        // Show New Message View
+        let newMessageController = NewMessageController()
+        let navController = UINavigationController(rootViewController: newMessageController)
+        present(navController, animated: true, completion: nil)
     }
 
     // MARK: Login

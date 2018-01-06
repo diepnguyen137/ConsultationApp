@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		52E19F1D8C759F738F2E1775 /* Pods_ConsultationAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */; };
 		841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFED41FF28975003CD9BF /* AppDelegate.swift */; };
-		841EFED71FF28975003CD9BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFED61FF28975003CD9BF /* ViewController.swift */; };
+		841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFED61FF28975003CD9BF /* MessagesController.swift */; };
 		841EFEDA1FF28975003CD9BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841EFED81FF28975003CD9BF /* Main.storyboard */; };
 		841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEDB1FF28975003CD9BF /* ConsultationApp.xcdatamodeld */; };
 		841EFEDF1FF28975003CD9BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841EFEDE1FF28975003CD9BF /* Assets.xcassets */; };
@@ -17,6 +17,8 @@
 		841EFEED1FF28976003CD9BF /* ConsultationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEEC1FF28976003CD9BF /* ConsultationAppTests.swift */; };
 		841EFEF81FF28976003CD9BF /* ConsultationAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */; };
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
+		8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D62000DE7100801C14 /* ChatLogController.swift */; };
+		8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D82000EBD500801C14 /* NewMessageController.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -45,7 +47,7 @@
 		8362FD53E170BF5FFE3A3EA5 /* Pods-ConsultationAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		841EFED11FF28975003CD9BF /* ConsultationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsultationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841EFED41FF28975003CD9BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		841EFED61FF28975003CD9BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		841EFED61FF28975003CD9BF /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessagesController.swift; path = ../Controller/MessagesController.swift; sourceTree = "<group>"; };
 		841EFED91FF28975003CD9BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		841EFEDC1FF28975003CD9BF /* ConsultationApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConsultationApp.xcdatamodel; sourceTree = "<group>"; };
 		841EFEDE1FF28975003CD9BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatLogController.swift; path = ../Controller/ChatLogController.swift; sourceTree = "<group>"; };
+		8CE074D82000EBD500801C14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMessageController.swift; path = ConsultationApp/Controller/NewMessageController.swift; sourceTree = SOURCE_ROOT; };
 		C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -164,7 +168,9 @@
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				841EFED61FF28975003CD9BF /* ViewController.swift */,
+				841EFED61FF28975003CD9BF /* MessagesController.swift */,
+				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
+				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
 			);
 			name = Controller;
 			path = "New Group";
@@ -480,7 +486,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				841EFED71FF28975003CD9BF /* ViewController.swift in Sources */,
+				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
+				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
+				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
 			);
