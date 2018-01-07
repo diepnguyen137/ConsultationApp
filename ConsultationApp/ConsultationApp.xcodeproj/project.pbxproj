@@ -19,6 +19,7 @@
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
 		8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D62000DE7100801C14 /* ChatLogController.swift */; };
 		8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D82000EBD500801C14 /* NewMessageController.swift */; };
+		8CE074DC200262BD00801C14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074DB200262BD00801C14 /* User.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatLogController.swift; path = ../Controller/ChatLogController.swift; sourceTree = "<group>"; };
 		8CE074D82000EBD500801C14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMessageController.swift; path = ConsultationApp/Controller/NewMessageController.swift; sourceTree = SOURCE_ROOT; };
+		8CE074DB200262BD00801C14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				8CE074DA2002629200801C14 /* Model */,
 				8CE074D52000D93200801C14 /* Controller */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
 				841EFED81FF28975003CD9BF /* Main.storyboard */,
@@ -174,6 +177,14 @@
 			);
 			name = Controller;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		8CE074DA2002629200801C14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CE074DB200262BD00801C14 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		ECEAF53C67DEC8EDB909A7FC /* Frameworks */ = {
@@ -488,6 +499,7 @@
 			files = (
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
+				8CE074DC200262BD00801C14 /* User.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,

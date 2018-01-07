@@ -7,37 +7,61 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class NewMessageController: UITableViewController {
-
+    let celId = "cellId"
+    
+    // Create User array
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Create Cancel Navigation Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        
+        // Fetching List of User from Firebase
+        fetchUser()
+    }
+    
+    // MARK: Firebase
+    func fetchUser(){
+        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let user = User()
+                user.setValuesForKeys(dictionary)
+                print(user)
+            }
+            
+            print("Firebase: User found")
+            print("Firebase: \(snapshot)")
+        }, withCancel: nil)
     }
     
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 0
+//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 5
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: celId)
+        cell.textLabel?.text = "Dummy"
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
