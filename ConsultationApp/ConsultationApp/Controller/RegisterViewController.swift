@@ -40,16 +40,15 @@ class RegisterViewController: UIViewController {
             Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (user, error) in
                 if error == nil {
                     print("You have successfully signed up")
-                    let user = [
-                        "name": self.usernameTxtField.text! as String,
-                        "email": self.emailTxtField.text! as String,
-                        "password": self.passTxtField.text! as String,
-                        "role" : "User",
-                        "avatar": " "
-                    ]
-               
+                    let name = self.usernameTxtField.text! as String
+                    let email = self.emailTxtField.text! as String
+                    let password = self.passTxtField.text! as String
+                    let role = "User"
+                    let avatar = " "
                     
-                    self.refUser.child(key).setValue(user)
+                    let user = User(email: email, name: name, password: password, role: role, avatar: avatar)
+                    
+                    self.refUser.child(key).setValue(user?.toAnyObject())
                 }
                 else {
                     print("Signed up error")

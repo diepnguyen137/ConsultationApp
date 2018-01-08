@@ -47,4 +47,9 @@ class User: NSObject {
     convenience override init() {
         self.init(email:"", name: "", password: "",role: "",avatar: "")!
     }
+    
+    //convert into Dictionary
+    func toAnyObject () ->[ String : Any] {
+        return ["email": email, "name": name, "password": password, "role":role, "avatar": avatar ]
+    }
 }
