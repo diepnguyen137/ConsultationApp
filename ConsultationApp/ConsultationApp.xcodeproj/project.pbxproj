@@ -139,13 +139,11 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				847AA6122003E638001D8788 /* Controller */,
+				847AA6112003E620001D8788 /* Model */,
 				841CD2D420005E2800BDFA5A /* Main.storyboard */,
-				8467B9462002FD0F00D95DA7 /* User .swift */,
 				841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
-				841EFED61FF28975003CD9BF /* ViewController.swift */,
-				846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */,
-				846CA1BB1FFFC61E0004641D /* LogInViewController.swift */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
 				841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */,
 				841EFEE01FF28975003CD9BF /* LaunchScreen.storyboard */,
@@ -171,6 +169,24 @@
 				841EFEF91FF28976003CD9BF /* Info.plist */,
 			);
 			path = ConsultationAppUITests;
+			sourceTree = "<group>";
+		};
+		847AA6112003E620001D8788 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8467B9462002FD0F00D95DA7 /* User .swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		847AA6122003E638001D8788 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				841EFED61FF28975003CD9BF /* ViewController.swift */,
+				846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */,
+				846CA1BB1FFFC61E0004641D /* LogInViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		ECEAF53C67DEC8EDB909A7FC /* Frameworks */ = {
