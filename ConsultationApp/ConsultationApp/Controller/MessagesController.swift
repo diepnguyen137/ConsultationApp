@@ -17,9 +17,16 @@ class MessagesController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
         
         // Logout Button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(showChatController))  // FIXME: Change this to Logout
+        
+        
     }
-    
+    @objc func showChatController(){
+        // Using CollectionViewController
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(chatLogController, animated: true)
+        
+    }
     // MARK: New Message
     @objc func handleNewMessage(){
         print("NewMessage: Pressed")
