@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
 
@@ -33,25 +35,37 @@ class LogInViewController: UIViewController {
     }
     
     @IBAction func logInBtnTapped(_ sender: Any) {
-        
-        if userTxtField.text == adminUsername && passwdTxtField.text == adminPass {
-            //create main storyboard instance
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            //from main storyboard instantiate navigation controller
-            let naviVC = storyboard.instantiateViewController(withIdentifier: "userListVC") as! UINavigationController
-            //Get the app delegate
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //Set navigation controller as root view controller
-            appDelegate.window?.rootViewController = naviVC
+        if userTxtField.text != nil && passwdTxtField.text != nil {
+            Auth.auth().signIn(withEmail: self.userTxtField.text!, password: self.passwdTxtField.text!){
+                (user, error) in
+                if error == nil {
+                    print("Log in successfully")
+                }
+                else {
+                    print("Account isn't available")
+                }
+            }
+            if userTxtField.text == adminUsername && passwdTxtField.text == adminPass {
+                //create main storyboard instance
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                //from main storyboard instantiate navigation controller
+                let naviVC = storyboard.instantiateViewController(withIdentifier: "userListVC") as! UINavigationController
+                //Get the app delegate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                //Set navigation controller as root view controller
+                appDelegate.window?.rootViewController = naviVC
+            }
+            else {
+                print("Not Admin")
+            }
             
         }
-        else {
-            print("Not admin")
-        }
-        
+       
+
     }
     
     @IBAction func registerBtnTapped(_ sender: Any) {
+        
         //switch view by setting navigation view as root view controller
         
         //create main storyboard instance

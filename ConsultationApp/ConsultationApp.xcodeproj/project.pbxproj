@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		52E19F1D8C759F738F2E1775 /* Pods_ConsultationAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */; };
+		841CD2D620005E2800BDFA5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841CD2D420005E2800BDFA5A /* Main.storyboard */; };
+		841CD2D820006A8B00BDFA5A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */; };
 		841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFED41FF28975003CD9BF /* AppDelegate.swift */; };
 		841EFED71FF28975003CD9BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFED61FF28975003CD9BF /* ViewController.swift */; };
-		841EFEDA1FF28975003CD9BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841EFED81FF28975003CD9BF /* Main.storyboard */; };
 		841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEDB1FF28975003CD9BF /* ConsultationApp.xcdatamodeld */; };
 		841EFEDF1FF28975003CD9BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841EFEDE1FF28975003CD9BF /* Assets.xcassets */; };
 		841EFEE21FF28975003CD9BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841EFEE01FF28975003CD9BF /* LaunchScreen.storyboard */; };
@@ -19,7 +20,6 @@
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
 		846CA1BC1FFFC61E0004641D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BB1FFFC61E0004641D /* LogInViewController.swift */; };
 		846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */; };
-		846CA1C0200004320004641D /* UserListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BF200004320004641D /* UserListTableViewController.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -46,10 +46,11 @@
 		0EAD2E6311A2B6659985E95F /* Pods-ConsultationApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.debug.xcconfig"; sourceTree = "<group>"; };
 		647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8362FD53E170BF5FFE3A3EA5 /* Pods-ConsultationAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		841CD2D520005E2800BDFA5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		841EFED11FF28975003CD9BF /* ConsultationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsultationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841EFED41FF28975003CD9BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		841EFED61FF28975003CD9BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		841EFED91FF28975003CD9BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		841EFEDC1FF28975003CD9BF /* ConsultationApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConsultationApp.xcdatamodel; sourceTree = "<group>"; };
 		841EFEDE1FF28975003CD9BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		841EFEE11FF28975003CD9BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		846CA1BB1FFFC61E0004641D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		846CA1BF200004320004641D /* UserListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListTableViewController.swift; sourceTree = "<group>"; };
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,10 +137,10 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				841CD2D420005E2800BDFA5A /* Main.storyboard */,
+				841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
 				841EFED61FF28975003CD9BF /* ViewController.swift */,
-				841EFED81FF28975003CD9BF /* Main.storyboard */,
-				846CA1BF200004320004641D /* UserListTableViewController.swift */,
 				846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */,
 				846CA1BB1FFFC61E0004641D /* LogInViewController.swift */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
@@ -299,7 +299,7 @@
 				841EFEE21FF28975003CD9BF /* LaunchScreen.storyboard in Resources */,
 				841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */,
 				841EFEDF1FF28975003CD9BF /* Assets.xcassets in Resources */,
-				841EFEDA1FF28975003CD9BF /* Main.storyboard in Resources */,
+				841CD2D620005E2800BDFA5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,11 +480,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846CA1C0200004320004641D /* UserListTableViewController.swift in Sources */,
 				846CA1BC1FFFC61E0004641D /* LogInViewController.swift in Sources */,
 				846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */,
 				841EFED71FF28975003CD9BF /* ViewController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
+				841CD2D820006A8B00BDFA5A /* UserTableViewCell.swift in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,10 +521,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		841EFED81FF28975003CD9BF /* Main.storyboard */ = {
+		841CD2D420005E2800BDFA5A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				841EFED91FF28975003CD9BF /* Base */,
+				841CD2D520005E2800BDFA5A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
     @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var emailTxtField: UITextField!
+    
+    @IBOutlet weak var passTxtField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +22,21 @@ class RegisterViewController: UIViewController {
         
         registerBtn.layer.borderWidth = 2.0
         registerBtn.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    @IBAction func registerBtnTapped(_ sender: Any) {
+        if self.emailTxtField.text != nil && self.passTxtField.text != nil {
+            Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (user, error) in
+                if error == nil {
+                    print("You have successfully signed up")
+                }
+                else {
+                    print("Signed up error")
+                }
+            }
+        }
+        
+        
     }
     @IBAction func cancelTapped(_ sender: Any) {
         //create main storyboard instance
