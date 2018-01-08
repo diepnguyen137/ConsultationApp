@@ -21,6 +21,9 @@ class NewMessageController: UITableViewController {
         // Create Cancel Navigation Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         
+        // Register Custom UserCell
+        tableView.register(UserCell.self, forCellReuseIdentifier: celId)
+        
         // Fetching List of User from Firebase
         fetchUser()
     }
@@ -29,14 +32,34 @@ class NewMessageController: UITableViewController {
     func fetchUser(){
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: AnyObject]{
-                let user = User()
-                user.setValuesForKeys(dictionary)
-                print(user)
-            }
-            
             print("Firebase: User found")
             print("Firebase: \(snapshot)")
+            
+            // Get name
+//            let dictionary = snapshot.value as? [String: Any]
+//            print(dictionary!["name"] as! String)
+            
+            // Add all user to dictionary for Swift 4
+            if let dictionary = snapshot.value as? NSDictionary {
+                let name = dictionary["name"] as? String ?? ""
+                let email = dictionary["email"] as? String ?? ""
+                let user = User(name: name, email: email)
+                
+                print("Firebase: User: \(user.name) \(user.email)")
+                
+                // Add user to users arraylist
+                self.users.append(user)
+                
+                // Reload data and avoid crashing
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+            
+            
+            
+            
         }, withCancel: nil)
     }
     
@@ -49,15 +72,19 @@ class NewMessageController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return users.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: celId)
-        cell.textLabel?.text = "Dummy"
+        
+        // Deque Reuseable Cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: celId, for: indexPath)
+        
+        // Fill User in to TableRow
+        let user = users[indexPath.row]
+        cell.textLabel?.text = user.name
+        cell.detailTextLabel?.text = user.email
 
         return cell
     }
@@ -113,4 +140,14 @@ class NewMessageController: UITableViewController {
 //    }
     
 
+}
+
+class UserCell: UITableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

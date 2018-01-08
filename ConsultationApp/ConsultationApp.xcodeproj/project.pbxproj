@@ -48,7 +48,7 @@
 		8362FD53E170BF5FFE3A3EA5 /* Pods-ConsultationAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		841EFED11FF28975003CD9BF /* ConsultationApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsultationApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		841EFED41FF28975003CD9BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		841EFED61FF28975003CD9BF /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessagesController.swift; path = ../Controller/MessagesController.swift; sourceTree = "<group>"; };
+		841EFED61FF28975003CD9BF /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		841EFED91FF28975003CD9BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		841EFEDC1FF28975003CD9BF /* ConsultationApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ConsultationApp.xcdatamodel; sourceTree = "<group>"; };
 		841EFEDE1FF28975003CD9BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChatLogController.swift; path = ../Controller/ChatLogController.swift; sourceTree = "<group>"; };
+		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		8CE074D82000EBD500801C14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMessageController.swift; path = ConsultationApp/Controller/NewMessageController.swift; sourceTree = SOURCE_ROOT; };
 		8CE074DB200262BD00801C14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,8 +175,7 @@
 				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
 				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
 			);
-			name = Controller;
-			path = "New Group";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		8CE074DA2002629200801C14 /* Model */ = {
