@@ -11,8 +11,8 @@ import FirebaseDatabase
 
 class User: NSObject {
     var id: String?
-     var name: String?
-     var email: String?
+    var name: String?
+    var email: String?
     
 //    init(id:String, name: String, email: String) {
 //        self.id = id

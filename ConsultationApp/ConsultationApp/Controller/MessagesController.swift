@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class MessagesController: UITableViewController {
 
@@ -19,9 +20,22 @@ class MessagesController: UITableViewController {
         
         // Logout Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        
+        // Update Messages
+        observeMessages()
     }
     
     // MARK: Handle Events
+    @objc func observeMessages(){
+        let refMessages = Database.database().reference().child("messages")
+        refMessages.observe(.childAdded, with: { (snapshot) in
+            print("Firebase: Messages: \(snapshot) ")
+            
+        }) { (error) in
+            print("Firebase: Messages: Error getting messages")
+        }
+    }
+    
     @objc func showChatControllerForUser(user: User){
         // Using CollectionViewController
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())

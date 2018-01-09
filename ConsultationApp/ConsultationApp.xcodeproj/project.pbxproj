@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
-				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
 				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
+				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
