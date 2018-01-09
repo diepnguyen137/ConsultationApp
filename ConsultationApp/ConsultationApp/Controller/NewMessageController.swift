@@ -17,6 +17,8 @@ class NewMessageController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("NewMessageController: DidLoad")
 
         // Create Cancel Navigation Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
@@ -41,12 +43,12 @@ class NewMessageController: UITableViewController {
             
             // Add all user to dictionary for Swift 4
             if let dictionary = snapshot.value as? NSDictionary {
-                let name = dictionary["name"] as? String ?? ""
-                let email = dictionary["email"] as? String ?? ""
-                let user = User(name: name, email: email)
+                let user = User()
+                user.id = snapshot.key
+                user.name = dictionary["name"] as? String ?? ""
+                user.email = dictionary["email"] as? String ?? ""
                 
-                print("Firebase: User: \(user.name) \(user.email)")
-                
+                print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.email ?? "")")
                 // Add user to users arraylist
                 self.users.append(user)
                 
@@ -70,9 +72,7 @@ class NewMessageController: UITableViewController {
         return users.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         // Deque Reuseable Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: celId, for: indexPath)
         
@@ -82,6 +82,20 @@ class NewMessageController: UITableViewController {
         cell.detailTextLabel?.text = user.email
 
         return cell
+    }
+    
+    var messagesController: MessagesController?
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            print("NewMessagesController: Dismiss Completed")
+            
+            // Get selected user
+            let user = self.users[indexPath.row]
+            
+            // Show ChatLogController
+            self.messagesController?.showChatControllerForUser(user: user)
+        }
     }
     
     // MARK: - Navigation

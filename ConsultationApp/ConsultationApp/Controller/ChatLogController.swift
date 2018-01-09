@@ -7,22 +7,30 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
-class ChatLogController: UICollectionViewController {
+class ChatLogController: UICollectionViewController, UITextFieldDelegate {
+    var user: User? {
+        didSet {
+            // set NavigationTile to Selected User
+            navigationItem.title = user?.name
+            print("ChatLogController: NavigationItem: Title: \(user?.name ?? "Not selected user.")")
+        }
+    }
     
-    let inputTextField: UITextField = {
+    lazy var inputTextField: UITextField = {
         // Create Textfield
         let textField = UITextField()
         textField.placeholder = "Enter messages...."
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
         return textField
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set up title for Chat Log Controller
-        navigationItem.title = "Chat Log Controller"
+        print("ChatLogController: DidLoad")
         
         collectionView?.backgroundColor = UIColor.white     // Set background to white
         
@@ -32,7 +40,7 @@ class ChatLogController: UICollectionViewController {
     
     func setupInputComponents(){
         let containerView = UIView()
-        containerView.backgroundColor = UIColor.red
+        containerView.backgroundColor = UIColor.white
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(containerView)
@@ -79,9 +87,26 @@ class ChatLogController: UICollectionViewController {
         seperatorLineView.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
+    // MARK: Handle Events
     @objc func handleSend(){
         print("ChatLogController: SendButton: Pressed")
         
         print("ChatLogController: inputTextField: \(inputTextField.text ?? "") ")
+        
+        // Write to Firebase
+        let refMessages = Database.database().reference().child("messages")
+        let childRef = refMessages.childByAutoId()
+        
+        let fromId = "ME" // Firebase Auth currentUser?.uid
+        let toId = user!.id!
+        let timestamp = NSDate().timeIntervalSince1970  
+        let values = ["text": inputTextField.text!, "fromId": fromId, "toId": toId, "timestamp": timestamp] as [String : Any]
+        childRef.updateChildValues(values)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Send the messages to firebase
+        handleSend()
+        return true
     }
 }

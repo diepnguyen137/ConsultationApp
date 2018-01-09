@@ -13,31 +13,36 @@ class MessagesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("MessagesController: DidLoad")
         // Compose new message
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(handleNewMessage))
         
         // Logout Button
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(showChatController))  // FIXME: Change this to Logout
-        
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
     }
-    @objc func showChatController(){
+    
+    // MARK: Handle Events
+    @objc func showChatControllerForUser(user: User){
         // Using CollectionViewController
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        navigationController?.pushViewController(chatLogController, animated: true)
         
+        // Send User to ChatLogController
+        chatLogController.user = user
+        
+        // Go to ChatLogController
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
-    // MARK: New Message
+    
     @objc func handleNewMessage(){
         print("NewMessage: Pressed")
         
         // Show New Message View
         let newMessageController = NewMessageController()
+        newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
     }
 
-    // MARK: Login
     @objc func handleLogout(){
         print("Logout: Pressed")
         

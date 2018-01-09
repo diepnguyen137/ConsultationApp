@@ -10,22 +10,17 @@ import UIKit
 import FirebaseDatabase
 
 class User: NSObject {
-     var name: String
-     var email: String
+    var id: String?
+     var name: String?
+     var email: String?
     
-    init(name: String, email: String) {
-        self.name = name
-        self.email = email
-    }
-    init?(snapshot: DataSnapshot) {
-        guard let dict = snapshot.value as? [String:Any] else { return nil }
-        guard let name = dict["name"] as? String else { return nil }
-        guard let email = dict["email"] as? String else { return nil }
-        
-        self.name = name
-        self.email = email
-    }
-    convenience override init() {
-        self.init(name: "", email: "")
-    }
+//    init(id:String, name: String, email: String) {
+//        self.id = id
+//        self.name = name
+//        self.email = email
+//    }
+    
+//    convenience override init() {
+//        self.init(id: "", name: "", email: "")
+//    }
 }
