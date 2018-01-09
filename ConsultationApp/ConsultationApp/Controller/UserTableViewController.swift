@@ -1,14 +1,19 @@
 //
-//  UserListTableViewController.swift
+//  UserTableViewController.swift
 //  ConsultationApp
 //
-//  Created by admin on 1/6/18.
+//  Created by admin on 1/9/18.
 //  Copyright © 2018 cosc2659. All rights reserved.
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
-class UserListTableViewController: UITableViewController {
+class UserTableViewController: UITableViewController {
+    
+    //Properties
+    var users = [User]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,13 @@ class UserListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(handleLogout))
+        self.navigationItem.title = "Admin"
+    }
+    @objc func handleLogout() {
+        print("UserTableViewController: Logout navigation: Pressed")
+        let loginController = LogInViewController()
+        self.present(loginController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,5 +103,14 @@ class UserListTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //Load users
+    private func loadUser(){
+        Database.database().reference().child("users").observe(.childAdded) { (snapshot) in
+            
+            
+        }
+        
+    }
 
 }

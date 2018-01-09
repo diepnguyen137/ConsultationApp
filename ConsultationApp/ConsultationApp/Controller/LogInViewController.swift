@@ -24,6 +24,7 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //Set border to log in button
         logInBtn.layer.borderWidth = 2.0
         logInBtn.layer.borderColor = UIColor.white.cgColor
         
@@ -60,7 +61,6 @@ class LogInViewController: UIViewController {
             }
             
         }
-       
 
     }
     

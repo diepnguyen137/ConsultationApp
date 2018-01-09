@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="1008.8" y="32.833583208395808"/>
         </scene>
-        <!--Table View Controller-->
+        <!--User Table View Controller-->
         <scene sceneID="Opg-kc-WAy">
             <objects>
-                <tableViewController id="FOL-zB-9LR" sceneMemberID="viewController">
+                <tableViewController id="FOL-zB-9LR" customClass="UserTableViewController" customModule="ConsultationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dve-eV-ycR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

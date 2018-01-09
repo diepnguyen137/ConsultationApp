@@ -21,6 +21,7 @@
 		8467B9472002FD0F00D95DA7 /* User .swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467B9462002FD0F00D95DA7 /* User .swift */; };
 		846CA1BC1FFFC61E0004641D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BB1FFFC61E0004641D /* LogInViewController.swift */; };
 		846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */; };
+		84DF598C20046809001C2318 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF598B20046809001C2318 /* UserTableViewController.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		8467B9462002FD0F00D95DA7 /* User .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User .swift"; sourceTree = "<group>"; };
 		846CA1BB1FFFC61E0004641D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		84DF598B20046809001C2318 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,7 +144,6 @@
 				847AA6122003E638001D8788 /* Controller */,
 				847AA6112003E620001D8788 /* Model */,
 				841CD2D420005E2800BDFA5A /* Main.storyboard */,
-				841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
 				841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */,
@@ -185,6 +186,8 @@
 				841EFED61FF28975003CD9BF /* ViewController.swift */,
 				846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */,
 				846CA1BB1FFFC61E0004641D /* LogInViewController.swift */,
+				841CD2D720006A8B00BDFA5A /* UserTableViewCell.swift */,
+				84DF598B20046809001C2318 /* UserTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				8467B9472002FD0F00D95DA7 /* User .swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
 				841CD2D820006A8B00BDFA5A /* UserTableViewCell.swift in Sources */,
+				84DF598C20046809001C2318 /* UserTableViewController.swift in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
