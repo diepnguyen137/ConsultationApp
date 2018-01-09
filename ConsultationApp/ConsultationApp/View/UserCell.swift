@@ -15,20 +15,7 @@ class UserCell: UITableViewCell {
     var message: Message? {
         didSet{
             
-            // Getting User Name by toId in message
-            if let toId = message?.toId {
-                let refUser = Database.database().reference().child("users").child(toId)
-                refUser.observeSingleEvent(of: .value, with: { (snapshot) in
-                    print("MessagesController: UserCell: Firebase: TOID: \(snapshot.key) ")
-                    
-                    if let dictionary = snapshot.value as? NSDictionary {
-                        self.textLabel?.text = dictionary["name"] as? String
-                        
-                        // TODO: Set Image URL
-                    }
-                    
-                })
-            }
+            setupNameAndProfileImage()
             
             // Set detail table by message
             self.detailTextLabel?.text = message?.text
@@ -37,10 +24,35 @@ class UserCell: UITableViewCell {
             if let seconds = message?.timestamp?.doubleValue {
                 let timestampDate = NSDate(timeIntervalSince1970: seconds)
                 
+                // Formatting to HH:MM:SS AM/PM
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "hh:mm:ss a"
                 timeLabel.text = dateFormatter.string(from: timestampDate as Date)
             }
+        }
+    }
+    @objc private func setupNameAndProfileImage(){
+        let chatPartnerId: String?
+        
+        if message?.fromId == "ME" {       // TODO: replace with firebase auth current Id
+            chatPartnerId = message?.toId
+        } else {
+            chatPartnerId = message?.fromId
+        }
+        
+        // Getting User Name by toId in message
+        if let id = chatPartnerId {
+            let refUser = Database.database().reference().child("users").child(id)
+            refUser.observeSingleEvent(of: .value, with: { (snapshot) in
+                print("MessagesController: UserCell: Firebase: TOID: \(snapshot.key) ")
+                
+                if let dictionary = snapshot.value as? NSDictionary {
+                    self.textLabel?.text = dictionary["name"] as? String
+                    
+                    // TODO: Set Image URL
+                }
+                
+            })
         }
     }
     // TODO: Design LayoutSubviews
