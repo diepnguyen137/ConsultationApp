@@ -99,7 +99,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         
         let fromId = "ME" // Firebase Auth currentUser?.uid
         let toId = user!.id!
-        let timestamp = NSDate().timeIntervalSince1970  
+        let timestamp = Int(NSDate().timeIntervalSince1970 )
         let values = ["text": inputTextField.text!, "fromId": fromId, "toId": toId, "timestamp": timestamp] as [String : Any]
         childRef.updateChildValues(values)
     }

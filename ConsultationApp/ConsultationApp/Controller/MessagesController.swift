@@ -11,6 +11,9 @@ import FirebaseDatabase
 
 class MessagesController: UITableViewController {
 
+    let cellId = "cellId"
+    var messages = [Message]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +24,32 @@ class MessagesController: UITableViewController {
         // Logout Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
+        // Register Custom UserCell
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        
         // Update Messages
         observeMessages()
+    }
+    
+    
+    // MARK: Table View Data Source
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
+        
+        // Show new message from User
+        let message = messages[indexPath.row]
+        cell.message = message
+        
+        return cell
+    }
+    
+    // Setup Cell Height
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 72
     }
     
     // MARK: Handle Events
@@ -31,10 +58,30 @@ class MessagesController: UITableViewController {
         refMessages.observe(.childAdded, with: { (snapshot) in
             print("Firebase: Messages: \(snapshot) ")
             
+            if let dictionary = snapshot.value as? NSDictionary {
+                let message = Message()
+                message.fromId = dictionary["fromId"] as? String ?? ""
+                message.text = dictionary["text"] as? String ?? ""
+                message.timestamp = dictionary["timestamp"] as? NSNumber
+                message.toId = dictionary["toId"] as? String ?? ""
+                
+                print("MessagesController: Messages: \(message.text ?? "")")
+                
+                // Add message to messages array
+                self.messages.append(message)
+                
+                // Reload data
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
         }) { (error) in
             print("Firebase: Messages: Error getting messages")
         }
     }
+    
+    
     
     @objc func showChatControllerForUser(user: User){
         // Using CollectionViewController
