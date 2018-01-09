@@ -9,6 +9,15 @@
 import UIKit
 
 class ChatLogController: UICollectionViewController {
+    
+    let inputTextField: UITextField = {
+        // Create Textfield
+        let textField = UITextField()
+        textField.placeholder = "Enter messages...."
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,9 +58,6 @@ class ChatLogController: UICollectionViewController {
         sendButton.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
         // Create Textfield
-        let inputTextField = UITextField()
-        inputTextField.placeholder = "Enter messages...."
-        inputTextField.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(inputTextField)
         
         // Constraint anchors x,y,w,h for Input TextField
@@ -75,5 +81,7 @@ class ChatLogController: UICollectionViewController {
     
     @objc func handleSend(){
         print("ChatLogController: SendButton: Pressed")
+        
+        print("ChatLogController: inputTextField: \(inputTextField.text ?? "") ")
     }
 }
