@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class MessagesController: UITableViewController {
 
     let cellId = "cellId"
     var messages = [Message]()
     var messagesDictionary = [String:Message]()
+    
+    // For LOGGING
+    let printVC = "MessagesController:"
+    let printFirebase = "Firebase:"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +31,22 @@ class MessagesController: UITableViewController {
         // Logout Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
+        // Check User
+        checkUser()
+        
         // Register Custom UserCell
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
+    }
+    
+    @objc func checkUser(){
+        let currentUser = Auth.auth().currentUser?.uid
+        print(printVC, printFirebase, "CurrentUser: \(currentUser ?? "NIL") ")
+        if currentUser == nil {
+            perform(#selector(handleLogout))
+        } else {
+            fetchUserAndSetupBarTitle()
+        }
     }
     
     
@@ -53,7 +72,7 @@ class MessagesController: UITableViewController {
     
     // MARK: Handle Events
     @objc func observeUserMessages(){
-        guard let uid = "ME" as Optional else { return }        // TODO: Replace with CurrentUser ID
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let ref = Database.database().reference().child("user-messages").child(uid)
         
         ref.observe(.childAdded) { (snapshot) in
@@ -100,6 +119,8 @@ class MessagesController: UITableViewController {
             
         }
     }
+    
+    // Retreive database from firebase
     @objc func observeMessages(){
         let refMessages = Database.database().reference().child("messages")
         refMessages.observe(.childAdded, with: { (snapshot) in
@@ -165,17 +186,28 @@ class MessagesController: UITableViewController {
     }
 
     @objc func handleLogout(){
-        print("Logout: Pressed")
+        print(printVC, printFirebase, "Logout: Pressed")
+        
+        do {
+            // Logout
+            try Auth.auth().signOut()
+            print(printVC, printFirebase, "Logout Completed")
+        } catch let logoutError {
+            print(printVC, printFirebase, logoutError)
+        }
+        
         
         // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
-        self.navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true, completion: nil)
         
     }
     
     @objc func fetchUserAndSetupBarTitle(){
-        guard let uid = "ME" as Optional else { return }      //TODO: Replace with Firebase CurrentUserID
+        print(printVC, printFirebase, "Fetching User: ....")
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        print(printVC, printFirebase, "Fetching User: \(uid)")
         
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? NSDictionary {
@@ -183,6 +215,7 @@ class MessagesController: UITableViewController {
                 user.id = snapshot.key
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
+                user.avatar = dictionary["avatar"] as? String ?? ""
                 
                 self.setupNavBarWithUser(user: user)
             }
@@ -190,6 +223,8 @@ class MessagesController: UITableViewController {
     }
     
     @objc func setupNavBarWithUser(user: User) {
+        
+        // Clear Old Messages
         messages.removeAll()
         messagesDictionary.removeAll()
         tableView.reloadData()
@@ -203,16 +238,31 @@ class MessagesController: UITableViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         titleView.addSubview(containerView)
         
-        // TODO: Add User ImageView
         let profileImageView = UIImageView()
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
-//        if let profileImageUrl = user.profileImageUrl {
-//            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-//        }
-        // TODO: Set Image to ImageView
+        
+        // FIXME: Update Image Load Performance
+        //Create storage reference
+        let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
+        //Observe method to download the data (4MB)
+        imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print(self.printVC, "Download Iamge: Error !!! \(error)")
+            } else {
+                if let imageData = data {
+                    DispatchQueue.main.async {
+                        //put Image to imageView in cell
+                        let image = UIImage(data: imageData)
+                        profileImageView.image = image
+                    }
+                    
+                }
+            }
+        }
+        
         containerView.addSubview(profileImageView)
         
         //ios 9 constraint anchors

@@ -153,9 +153,15 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
     @objc func handleLogout() {
         print("UserTableViewController: Logout navigation: Pressed")
         // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
-        self.navigationController?.pushViewController(vc, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        //create main storyboard instance
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        //from main storyboard instantiate navigation controller
+        let naviVC = storyboard.instantiateViewController(withIdentifier: "logInCV")
+        present(naviVC, animated: true, completion: nil)
     }
     
 }
