@@ -17,6 +17,7 @@
 		841EFEED1FF28976003CD9BF /* ConsultationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEEC1FF28976003CD9BF /* ConsultationAppTests.swift */; };
 		841EFEF81FF28976003CD9BF /* ConsultationAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */; };
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
+		8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0701052005EFE00043D656 /* LogInViewController.swift */; };
 		8C136BAE2004DA250019ED44 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BAD2004DA250019ED44 /* Message.swift */; };
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
 		8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D62000DE7100801C14 /* ChatLogController.swift */; };
@@ -65,6 +66,7 @@
 		841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
+		8C0701052005EFE00043D656 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8C136BAD2004DA250019ED44 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8C136BB02004FDEA0019ED44 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C0701052005EFE00043D656 /* LogInViewController.swift */,
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
 				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
 				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
@@ -512,6 +515,7 @@
 			files = (
 				8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */,
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
+				8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
 				8CE074DC200262BD00801C14 /* User.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
