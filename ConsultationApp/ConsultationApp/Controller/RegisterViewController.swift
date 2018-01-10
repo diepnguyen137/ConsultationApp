@@ -38,11 +38,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     //Action
     @IBAction func registerBtnTapped(_ sender: Any) {
         if self.emailTxtField.text != nil && self.passTxtField.text != nil {
-            //Generate automatic key
-            let key = refUser.childByAutoId().key
-            
+
             //Register with email 
-            Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (user, error) in
+            Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (newUser, error) in
                 if error != nil {
                    print("RegisterViewController: Register Fail")
                 }
@@ -66,7 +64,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                             if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
                                 user.avatar = profileImageUrl
                                 //Store in Firebase
-                                self.refUser.child(key).setValue(user.toAnyObject())
+                                let key = newUser?.uid as String?
+                                self.refUser.child(key!).setValue(user.toAnyObject())
                                 print("RegisterViewController: Register Successfully")
                             }
                         })
