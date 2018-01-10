@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import FirebaseDatabase
 
 class MessagesController: UITableViewController {
@@ -100,6 +101,8 @@ class MessagesController: UITableViewController {
             
         }
     }
+    
+    // Retreive database from firebase
     @objc func observeMessages(){
         let refMessages = Database.database().reference().child("messages")
         refMessages.observe(.childAdded, with: { (snapshot) in
