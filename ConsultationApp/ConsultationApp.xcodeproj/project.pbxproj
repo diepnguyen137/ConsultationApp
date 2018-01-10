@@ -23,7 +23,7 @@
 		841EFEED1FF28976003CD9BF /* ConsultationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEEC1FF28976003CD9BF /* ConsultationAppTests.swift */; };
 		841EFEF81FF28976003CD9BF /* ConsultationAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */; };
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
-		8467B9472002FD0F00D95DA7 /* User .swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467B9462002FD0F00D95DA7 /* User .swift */; };
+		8467B9472002FD0F00D95DA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467B9462002FD0F00D95DA7 /* User.swift */; };
 		846CA1BC1FFFC61E0004641D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BB1FFFC61E0004641D /* LogInViewController.swift */; };
 		846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */; };
 		84DF598C20046809001C2318 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF598B20046809001C2318 /* UserTableViewController.swift */; };
@@ -74,7 +74,7 @@
 		841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationAppUITests.swift; sourceTree = "<group>"; };
 		841EFEF91FF28976003CD9BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8467B9462002FD0F00D95DA7 /* User .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User .swift"; sourceTree = "<group>"; };
+		8467B9462002FD0F00D95DA7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		846CA1BB1FFFC61E0004641D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		84DF598B20046809001C2318 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				84096B8420055B4F000C14FD /* Message.swift */,
-				8467B9462002FD0F00D95DA7 /* User .swift */,
+				8467B9462002FD0F00D95DA7 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -529,7 +529,7 @@
 				84096B8820055B62000C14FD /* UserCell.swift in Sources */,
 				846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */,
 				841EFED71FF28975003CD9BF /* ViewController.swift in Sources */,
-				8467B9472002FD0F00D95DA7 /* User .swift in Sources */,
+				8467B9472002FD0F00D95DA7 /* User.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
 				84096B8320055B43000C14FD /* ChatLogController.swift in Sources */,
 				841CD2D820006A8B00BDFA5A /* UserTableViewCell.swift in Sources */,

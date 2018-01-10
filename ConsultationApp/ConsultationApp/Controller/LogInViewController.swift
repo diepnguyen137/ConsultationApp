@@ -35,6 +35,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         fetchUser()
         
+        userTxtField.text = "admin"
+        passwdTxtField.text = "admin"
+        
     }
 
     override func didReceiveMemoryWarning() {

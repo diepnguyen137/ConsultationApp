@@ -38,7 +38,6 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
     //Action
     @IBAction func registerBtnTapped(_ sender: Any) {
         if self.emailTxtField.text != nil && self.passTxtField.text != nil {
-
             //Register with email 
             Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (newUser, error) in
                 if error != nil {

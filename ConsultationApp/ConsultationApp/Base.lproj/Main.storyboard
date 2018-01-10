@@ -133,6 +133,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1i-E9-Xbb">
                                             <rect key="frame" x="316" y="67" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="switchRoleChanged:" destination="u3f-2R-ejP" eventType="valueChanged" id="0qh-vJ-wTr"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>

@@ -11,11 +11,12 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-class UserTableViewController: UITableViewController {
+class UserTableViewController: UITableViewController, UserCellDelegate {
+    
     
     //Properties
     var users = [User]()
-    var selectIndex = 0
+    var refUser : DatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,9 @@ class UserTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        refUser = Database.database().reference().child("users")
+        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(handleLogout))
         self.navigationItem.title = "Admin"
         
@@ -53,8 +57,6 @@ class UserTableViewController: UITableViewController {
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
                 user.role = dictionary["role"] as? String ?? ""
-                
-                
                 print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.role ?? "") \(user.email ?? "")")
                 // Add user to users arraylist
                 self.users.append(user)
@@ -87,10 +89,11 @@ class UserTableViewController: UITableViewController {
         
         //Fill User into Table view
         let user = users[indexPath.row]
-        selectIndex = indexPath.row
         
         cell.userName.text = user.name
         cell.userEmail.text = user.email
+        
+        //Switch on if it is the Consultant and off otherwise
         if user.role == "User" {
             cell.switchRole.setOn(false, animated: true)
             
@@ -99,6 +102,15 @@ class UserTableViewController: UITableViewController {
             cell.switchRole.setOn(true, animated: true)
         }
         
+        if cell.switchRole.isOn {
+            //user.role == "Consultant"
+            refUser.child(user.id!).child("role").setValue("Consultant")
+        }
+        else {
+            //user.role == "User"
+            refUser.child(user.id!).child("role").setValue("User")
+
+        }
         
         //Create storage reference
         let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
@@ -118,12 +130,34 @@ class UserTableViewController: UITableViewController {
                     
                 }
             }
-            
         }
-
+        cell.delegate = self
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    //Switch Role function
+    func switchRoleChanged(sender: UserTableViewCell, check: Bool) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            //users[indexPath.row].role = "Consultant"
+            if check {
+                refUser.child(users[indexPath.row].id!).child("role").setValue("Consultant")
+                print("Switched at \(indexPath.row)")
+                print(check)
+            }
+            else {
+                refUser.child(users[indexPath.row].id!).child("role").setValue("User")
+                print("Switched at \(indexPath.row)")
+                print(check)
+            }
+            
+        }
+        
+    }
+
     // MARK: - Navigation
     // Go back to Log in View
     @objc func handleLogout() {
