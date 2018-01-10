@@ -15,8 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Install Firebase
         FirebaseApp.configure()
+        
+        // Create Window
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        // Connect to ViewController
+        window?.rootViewController = UINavigationController(rootViewController: MessagesController())
+        
         return true
     }
 

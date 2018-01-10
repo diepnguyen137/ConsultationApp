@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 class User: NSObject {
     //Properties
+    var id : String?
     var email: String?
     var name : String?
     var password: String?

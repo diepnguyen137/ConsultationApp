@@ -9,8 +9,9 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var registerBtn: UIButton!
     
     @IBOutlet weak var avatar: UIImageView!
@@ -29,8 +30,12 @@ class RegisterViewController: UIViewController {
         
         registerBtn.layer.borderWidth = 2.0
         registerBtn.layer.borderColor = UIColor.white.cgColor
+        
+        usernameTxtField.delegate = self
+        emailTxtField.delegate = self
+        passTxtField.delegate = self
     }
-    
+    //Action
     @IBAction func registerBtnTapped(_ sender: Any) {
         if self.emailTxtField.text != nil && self.passTxtField.text != nil {
             //Generate automatic key
@@ -38,25 +43,54 @@ class RegisterViewController: UIViewController {
             
             //Register with email 
             Auth.auth().createUser(withEmail: self.emailTxtField.text!, password: self.passTxtField.text!) { (user, error) in
-                if error == nil {
-                    print("RegisterViewController: Register button: Pressed")
+                if error != nil {
+                   print("RegisterViewController: Register Fail")
+                }
+                else {
                     let user = User()
                     user.name = self.usernameTxtField.text! as String
                     user.email = self.emailTxtField.text! as String
                     user.password = self.passTxtField.text! as String
                     user.role = "User"
-                    user.avatar = " "
-        
-                    //Store in Firebase
-                    self.refUser.child(key).setValue(user.toAnyObject())
-                    print("RegisterViewController: Register Successfully")
+                    
+                    let imageName = UUID().uuidString
+                    let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")
+                    
+                    if let profileImage = self.avatar.image, let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
+                        
+                        storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                            if error != nil {
+                                print(error ?? "")
+                                return
+                            }
+                            if let profileImageUrl = metadata?.downloadURL()?.absoluteString {
+                                user.avatar = profileImageUrl
+                                //Store in Firebase
+                                self.refUser.child(key).setValue(user.toAnyObject())
+                                print("RegisterViewController: Register Successfully")
+                            }
+                        })
+                    }
                 }
-                else {
-                    print("RegisterViewController: Register Fail")
-                }
+                
             }
         }
     }
+
+    @IBAction func selectImageFromLibrary(_ sender: UITapGestureRecognizer) {
+        // Hide the keyboard.
+        usernameTxtField.resignFirstResponder()
+        emailTxtField.resignFirstResponder()
+        passTxtField.resignFirstResponder()
+        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+        let imagePickerController = UIImagePickerController()
+        // Only allow photos to be picked, not taken.
+        imagePickerController.sourceType = .photoLibrary
+        // Make sure ViewController is notified when the user picks an image.
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
     @IBAction func cancelTapped(_ sender: Any) {
         //create main storyboard instance
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -74,6 +108,40 @@ class RegisterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        // The info dictionary may contain multiple representations of the image. You want to use the original.
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        
+        // Set photoImageView to display the selected image.
+        avatar.image = selectedImage
+        
+        // Dismiss the picker.
+        dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameTxtField {
+            usernameTxtField.resignFirstResponder()
+            emailTxtField.becomeFirstResponder()
+            
+        } else if textField == emailTxtField {
+            emailTxtField.resignFirstResponder()
+            passTxtField.becomeFirstResponder()
+        }
+        else if textField == passTxtField {
+            passTxtField.resignFirstResponder()
+        }
+        
+        return true
+    }
 
     /*
     // MARK: - Navigation

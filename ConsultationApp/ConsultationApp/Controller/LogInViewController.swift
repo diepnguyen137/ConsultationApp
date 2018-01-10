@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var logInBtn: UIButton!
@@ -24,9 +24,11 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //Set border to log in button
         logInBtn.layer.borderWidth = 2.0
         logInBtn.layer.borderColor = UIColor.white.cgColor
+        
+        userTxtField.delegate = self
+        passwdTxtField.delegate = self
         
     }
 
@@ -61,6 +63,7 @@ class LogInViewController: UIViewController {
             }
             
         }
+       
 
     }
     
@@ -86,5 +89,16 @@ class LogInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userTxtField {
+            userTxtField.resignFirstResponder()
+            passwdTxtField.becomeFirstResponder()
+        } else {
+            passwdTxtField.resignFirstResponder()
+        }
+        
+        return true
+    }
 
 }
