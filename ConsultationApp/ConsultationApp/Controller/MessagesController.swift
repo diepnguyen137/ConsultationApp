@@ -107,9 +107,11 @@ class MessagesController: UITableViewController {
     @objc func handleLogout(){
         print("Logout: Pressed")
         
-        // TODO: For login controller
-//        let loginController = LoginController()
-//        present(loginController, animated: true, completion: nil)
+        // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 
