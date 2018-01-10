@@ -102,16 +102,6 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
             cell.switchRole.setOn(true, animated: true)
         }
         
-        if cell.switchRole.isOn {
-            //user.role == "Consultant"
-            refUser.child(user.id!).child("role").setValue("Consultant")
-        }
-        else {
-            //user.role == "User"
-            refUser.child(user.id!).child("role").setValue("User")
-
-        }
-        
         //Create storage reference
         let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
         //Observe method to download the data (4MB)
