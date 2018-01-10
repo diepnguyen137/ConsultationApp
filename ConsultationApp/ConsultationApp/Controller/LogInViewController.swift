@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,6 +21,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var adminUsername:String = "admin"
     var adminPass:String = "admin"
     
+    var users = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +33,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         userTxtField.delegate = self
         passwdTxtField.delegate = self
         
+        fetchUser()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,17 +42,41 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func fetchUser() {
+        // Read user information from Database
+        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+//
+//            print("Firebase: User found")
+//            print("Firebase: \(snapshot)")
+            
+            // Add all user to dictionary for Swift 4
+            if let dictionary = snapshot.value as? NSDictionary {
+                let user = User ()
+                user.email = dictionary["email"] as? String ?? ""
+                user.password = dictionary["password"] as? String ?? ""
+                user.role = dictionary["role"] as? String ?? ""
+                print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.role ?? "") \(user.email ?? "")")
+                // Add user to users arraylist
+                self.users.append(user)
+            }
+        }, withCancel: nil)
+        
+    }
+    
     @IBAction func logInBtnTapped(_ sender: Any) {
         if userTxtField.text != nil && passwdTxtField.text != nil {
-            Auth.auth().signIn(withEmail: self.userTxtField.text!, password: self.passwdTxtField.text!){
-                (user, error) in
-                if error == nil {
-                    print("Log in successfully")
-                }
-                else {
-                    print("Account isn't available")
+            //Log in as User/Consultant
+            for user in users {
+                if (userTxtField.text == user.email && passwdTxtField.text == user.password) {
+                    if (user.role == "Consultant") {
+                        print("Log in: as Consultant")
+                    }
+                    else {
+                        print("Log in: as User")
+                    }
                 }
             }
+            //Log in as Admin
             if userTxtField.text == adminUsername && passwdTxtField.text == adminPass {
                 //create main storyboard instance
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -63,8 +92,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-       
-
     }
     
     @IBAction func registerBtnTapped(_ sender: Any) {

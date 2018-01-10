@@ -9,11 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseStorage
 
 class UserTableViewController: UITableViewController {
     
     //Properties
     var users = [User]()
+    var selectIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,36 +87,51 @@ class UserTableViewController: UITableViewController {
         
         //Fill User into Table view
         let user = users[indexPath.row]
+        selectIndex = indexPath.row
+        
         cell.userName.text = user.name
         cell.userEmail.text = user.email
         if user.role == "User" {
-            cell.switchRole.setOn(false, animated: false)
+            cell.switchRole.setOn(false, animated: true)
             
         }
         else if user.role == "Consultant" {
-            cell.switchRole.setOn(true, animated: false)
+            cell.switchRole.setOn(true, animated: true)
         }
-//        URLSession.shared.dataTask(with: NSURL(string: user.avatar!) as! URL) { (data, response, error) in
-//            if error != nil {
-//                print ("Error")
-//            }
-//            DispatchQueue.main.async(execute: {
-//                let image = UIImage(data : data!)
-//                cell.userAvarta.image = image
-//            })
-//            
-//            
-//        }
+        
+        
+        //Create storage reference
+        let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
+        //Observe method to download the data (4MB)
+        imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print("UserTableViewController: Download Iamge: Error !!! \(error)")
+            } else {
+                if let imageData = data {
+                    DispatchQueue.main.async {
+                        //put Image to imageView in cell
+                        let image = UIImage(data: imageData)
+                        cell.userAvarta.image = image
+                        cell.userAvarta.layer.cornerRadius = cell.userAvarta.frame.size.width / 2
+                        cell.userAvarta.clipsToBounds = true
+                    }
+                    
+                }
+            }
+            
+        }
+
         return cell
     }
-
     
     // MARK: - Navigation
     // Go back to Log in View
     @objc func handleLogout() {
         print("UserTableViewController: Logout navigation: Pressed")
-        let loginController = LogInViewController()
-        self.present(loginController, animated: true, completion: nil)
+        // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
