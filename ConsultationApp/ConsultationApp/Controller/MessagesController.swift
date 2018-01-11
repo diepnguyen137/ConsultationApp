@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class MessagesController: UITableViewController {
 
@@ -214,6 +215,7 @@ class MessagesController: UITableViewController {
                 user.id = snapshot.key
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
+                user.avatar = dictionary["avatar"] as? String ?? ""
                 
                 self.setupNavBarWithUser(user: user)
             }
@@ -242,10 +244,34 @@ class MessagesController: UITableViewController {
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
+        
+        // FIXME: Update Title User ImageView
+        
+        //Create storage reference
+        let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
+        //Observe method to download the data (4MB)
+        imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+            if let error = error {
+                print(self.printVC, "Download Iamge: Error !!! \(error)")
+            } else {
+                if let imageData = data {
+                    DispatchQueue.main.async {
+                        //put Image to imageView in cell
+                        let image = UIImage(data: imageData)
+                        profileImageView.image = image
+                        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+                        profileImageView.clipsToBounds = true
+                    }
+                    
+                }
+            }
+            
+        }
+
 //        if let profileImageUrl = user.profileImageUrl {
 //            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
 //        }
-        // TODO: Set Image to ImageView
+        
         containerView.addSubview(profileImageView)
         
         //ios 9 constraint anchors
