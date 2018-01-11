@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 
 // Setup a custome UserCell
 class UserCell: UITableViewCell {
@@ -50,13 +52,47 @@ class UserCell: UITableViewCell {
                     self.textLabel?.text = dictionary["name"] as? String
                     
                     // TODO: Set Image URL
+                    
+                    if let profileImageUrl = dictionary["avatar"] as? String {
+                        let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
+//                      Observe method to download the data (4MB)
+                        imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                            if let error = error {
+                                print("Download Iamge: Error !!! \(error)")
+                            } else {
+                                if let imageData = data {
+                                    DispatchQueue.main.async {
+                                        //put Image to imageView in cell
+                                        let image = UIImage(data: imageData)
+                                        self.profileImageView.image = image
+                                    }
+    
+                                }
+                            }
+                        }
+                    }
                 }
                 
             })
         }
     }
     // TODO: Design LayoutSubviews
-    // TODO: Design ImageView for each cell
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        textLabel?.frame = CGRect(x: 64, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
+        
+        detailTextLabel?.frame = CGRect(x: 64, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
+    }
+    
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 24
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     
     // Time Label
     let timeLabel: UILabel = {
@@ -72,9 +108,13 @@ class UserCell: UITableViewCell {
         
         // Add to subview
         addSubview(timeLabel)
-        // TODO: add ImageView
+        addSubview(profileImageView)
         
-        // TODO: constraint anchors for ImageView
+        // Constraint anchor for profileImageView
+        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         // Constraint anchor for timelabel
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true

@@ -245,8 +245,7 @@ class MessagesController: UITableViewController {
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
         
-        // FIXME: Update Title User ImageView
-        
+        // FIXME: Update Image Load Performance
         //Create storage reference
         let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
         //Observe method to download the data (4MB)
@@ -259,18 +258,11 @@ class MessagesController: UITableViewController {
                         //put Image to imageView in cell
                         let image = UIImage(data: imageData)
                         profileImageView.image = image
-                        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-                        profileImageView.clipsToBounds = true
                     }
                     
                 }
             }
-            
         }
-
-//        if let profileImageUrl = user.profileImageUrl {
-//            profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-//        }
         
         containerView.addSubview(profileImageView)
         
