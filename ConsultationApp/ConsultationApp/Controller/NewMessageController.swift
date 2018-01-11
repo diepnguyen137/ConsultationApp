@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class NewMessageController: UITableViewController {
     let celId = "cellId"
@@ -37,16 +38,13 @@ class NewMessageController: UITableViewController {
             print("Firebase: User found")
             print("Firebase: \(snapshot)")
             
-            // Get name
-//            let dictionary = snapshot.value as? [String: Any]
-//            print(dictionary!["name"] as! String)
-            
             // Add all user to dictionary for Swift 4
             if let dictionary = snapshot.value as? NSDictionary {
                 let user = User()
                 user.id = snapshot.key
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
+                user.avatar = dictionary["avatar"] as? String ?? ""
                 
                 print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.email ?? "")")
                 // Add user to users arraylist
@@ -57,11 +55,6 @@ class NewMessageController: UITableViewController {
                     self.tableView.reloadData()
                 }
             }
-            
-            
-            
-            
-            
         }, withCancel: nil)
     }
     
@@ -74,12 +67,32 @@ class NewMessageController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Deque Reuseable Cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: celId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: celId, for: indexPath) as! UserCell
         
         // Fill User in to TableRow
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        
+        // Load Image
+        if let profileImageUrl = user.avatar {
+            let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
+            //                      Observe method to download the data (4MB)
+            imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print("Download Iamge: Error !!! \(error)")
+                } else {
+                    if let imageData = data {
+                        DispatchQueue.main.async {
+                            //put Image to imageView in cell
+                            let image = UIImage(data: imageData)
+                            cell.profileImageView.image = image
+                        }
+                        
+                    }
+                }
+            }
+        }
 
         return cell
     }
@@ -102,7 +115,7 @@ class NewMessageController: UITableViewController {
 
      // Return to MessagesController
      @objc func handleCancel(){
-     dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
      }
   
 }

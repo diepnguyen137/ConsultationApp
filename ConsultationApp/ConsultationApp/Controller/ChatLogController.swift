@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class ChatLogController: UICollectionViewController, UITextFieldDelegate {
     var user: User? {
@@ -97,10 +98,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         let refMessages = Database.database().reference().child("messages")
         let childRef = refMessages.childByAutoId()
         
-        let fromId = "ME" // Firebase Auth currentUser?.uid
+        let fromId = Auth.auth().currentUser?.uid   
         let toId = user!.id!
         let timestamp = Int(NSDate().timeIntervalSince1970 )
-        let values = ["text": inputTextField.text!, "fromId": fromId, "toId": toId, "timestamp": timestamp] as [String : Any]
+        let values = ["text": inputTextField.text!, "fromId": fromId ?? "", "toId": toId, "timestamp": timestamp] as [String : Any]
 //        childRef.updateChildValues(values)
         
         childRef.updateChildValues(values) { (error, refMessages) in
@@ -109,7 +110,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
                 return
             }
             
-            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId)
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId!)
             let messageId = childRef.key
             userMessagesRef.updateChildValues([messageId: 1])
             

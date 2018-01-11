@@ -36,7 +36,8 @@ class UserCell: UITableViewCell {
     @objc private func setupNameAndProfileImage(){
         let chatPartnerId: String?
         
-        if message?.fromId == "ME" {       // TODO: replace with firebase auth current Id
+        // Swap list user
+        if message?.fromId == Auth.auth().currentUser?.uid {
             chatPartnerId = message?.toId
         } else {
             chatPartnerId = message?.fromId
@@ -51,8 +52,6 @@ class UserCell: UITableViewCell {
                 if let dictionary = snapshot.value as? NSDictionary {
                     self.textLabel?.text = dictionary["name"] as? String
                     
-                    // TODO: Set Image URL
-                    
                     if let profileImageUrl = dictionary["avatar"] as? String {
                         let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
 //                      Observe method to download the data (4MB)
@@ -61,11 +60,11 @@ class UserCell: UITableViewCell {
                                 print("Download Iamge: Error !!! \(error)")
                             } else {
                                 if let imageData = data {
-//                                    DispatchQueue.main.async {
+                                    DispatchQueue.main.async {
                                         //put Image to imageView in cell
                                         let image = UIImage(data: imageData)
                                         self.profileImageView.image = image
-//                                    }
+                                    }
     
                                 }
                             }

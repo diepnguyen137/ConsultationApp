@@ -72,7 +72,7 @@ class MessagesController: UITableViewController {
     
     // MARK: Handle Events
     @objc func observeUserMessages(){
-        guard let uid = "ME" as Optional else { return }        // TODO: Replace with CurrentUser ID
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         let ref = Database.database().reference().child("user-messages").child(uid)
         
         ref.observe(.childAdded) { (snapshot) in
@@ -238,7 +238,6 @@ class MessagesController: UITableViewController {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         titleView.addSubview(containerView)
         
-        // TODO: Add User ImageView
         let profileImageView = UIImageView()
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         profileImageView.contentMode = .scaleAspectFill
