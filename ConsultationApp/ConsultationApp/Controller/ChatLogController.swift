@@ -9,13 +9,46 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import FirebaseStorage
 
-class ChatLogController: UICollectionViewController, UITextFieldDelegate {
+class ChatLogController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
     var user: User? {
         didSet {
             // set NavigationTile to Selected User
             navigationItem.title = user?.name
             print("ChatLogController: NavigationItem: Title: \(user?.name ?? "Not selected user.")")
+            
+            observeMessages()
+        }
+    }
+    
+    var messages = [Message]()
+    
+    @objc func observeMessages(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+         let userMessagesRef = Database.database().reference().child("user-messages").child(uid)
+        userMessagesRef.observe(.childAdded) { (snapshot) in
+            // Get all the messages of user
+            let messageId = snapshot.key
+            let messagesRef = Database.database().reference().child("messages").child(messageId)
+            messagesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let dictionary = snapshot.value as? NSDictionary else { return }
+                let message = Message()
+                message.fromId = dictionary["fromId"] as? String ?? ""
+                message.text = dictionary["text"] as? String ?? ""
+                message.toId = dictionary["toId"] as? String ?? ""
+                message.timestamp = dictionary["timestamp"] as? NSNumber
+                
+                // check user
+                if message.chatPartnerId() == self.user?.id {
+                    print(message.text ?? "")
+                    self.messages.append(message)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                }
+            })
         }
     }
     
@@ -28,15 +61,98 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
         return textField
     }()
     
+    let cellId = "cellId"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("ChatLogController: DidLoad")
         
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)       // Spacing from top and botom
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+        collectionView?.alwaysBounceVertical = true         // Set to vertial scrolling
         collectionView?.backgroundColor = UIColor.white     // Set background to white
-        
+        collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         // Setup a chat field
         setupInputComponents()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
+        
+        let message = messages[indexPath.row]
+        cell.textView.text = message.text
+        
+        setupCell(cell: cell, message: message)
+        
+        // Modifiy bubble view
+        cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text!).width + 30
+        
+        return cell
+    }
+    
+    private func setupCell(cell: ChatMessageCell, message: Message){
+        // Load Image
+        // FIXME: fix load image
+        if let profileImageUrl = self.user?.avatar {
+            print("Firebase Storage: \(profileImageUrl)")
+            let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
+            //                      Observe method to download the data (4MB)
+            imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    print("Download Iamge: Error !!! \(error)")
+                } else {
+                    if let imageData = data {
+                        DispatchQueue.main.async {
+                            //put Image to imageView in cell
+                            let image = UIImage(data: imageData)
+                            cell.profileImageView.image = image
+                        }
+                        
+                    }
+                }
+            }
+        }
+        
+        // check user
+        if message.fromId == Auth.auth().currentUser?.uid {
+            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
+            cell.profileImageView.isHidden = true                   // Hide image
+            // Move bubble to right
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+        } else {
+            // gray message
+            cell.bubbleView.backgroundColor = UIColor.lightGray     // Change Color
+            cell.profileImageView.isHidden = false                  // UnHide Image
+            // Move bubble to left
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView?.collectionViewLayout.invalidateLayout()         // Landscape fix
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var height: CGFloat = 80
+        
+        if let text = messages[indexPath.item].text {
+            height = estimateFrameForText(text: text).height + 20
+        }
+        
+        return CGSize(width: view.frame.width, height: height)
+    }
+    
+    private func estimateFrameForText(text: String) -> CGRect {
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options: options, attributes:  [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], context: nil)
     }
     
     func setupInputComponents(){
@@ -109,6 +225,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate {
                 print(error ?? "")
                 return
             }
+            // clear inputtextfield
+            self.inputTextField.text = nil
             
             let userMessagesRef = Database.database().reference().child("user-messages").child(fromId!)
             let messageId = childRef.key

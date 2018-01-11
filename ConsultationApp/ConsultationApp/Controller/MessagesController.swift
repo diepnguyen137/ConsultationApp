@@ -92,6 +92,7 @@ class MessagesController: UITableViewController {
     }
     
     // MARK: Handle Events
+    // Retreive database from firebase
     @objc func observeUserMessages(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let ref = Database.database().reference().child("user-messages").child(uid)
@@ -115,8 +116,8 @@ class MessagesController: UITableViewController {
                     print("MessagesController: Messages: \(message.text ?? "")")
                     
                     // Get the last message of user
-                    if let toId = message.toId {
-                        self.messagesDictionary[toId] = message
+                    if let chatPartnerId = message.chatPartnerId() {
+                        self.messagesDictionary[chatPartnerId] = message
                         
                         // Add message to messages arry
                         self.messages = Array(self.messagesDictionary.values)
@@ -130,10 +131,10 @@ class MessagesController: UITableViewController {
                         })
                     }
                     
-                    // Reload data
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
+                    
+                    self.timer?.invalidate()
+                    // Reload table in 0.1s
+                    self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
                 }
                 
             }, withCancel: nil)
@@ -141,49 +142,17 @@ class MessagesController: UITableViewController {
         }
     }
     
-    // Retreive database from firebase
-    @objc func observeMessages(){
-        let refMessages = Database.database().reference().child("messages")
-        refMessages.observe(.childAdded, with: { (snapshot) in
-            print("Firebase: Messages: \(snapshot) ")
-            
-            if let dictionary = snapshot.value as? NSDictionary {
-                let message = Message()
-                message.fromId = dictionary["fromId"] as? String ?? ""
-                message.text = dictionary["text"] as? String ?? ""
-                message.timestamp = dictionary["timestamp"] as? NSNumber
-                message.toId = dictionary["toId"] as? String ?? ""
-                
-                print("MessagesController: Messages: \(message.text ?? "")")
-                
-                // Get the last message of user
-                if let toId = message.toId {
-                    self.messagesDictionary[toId] = message
-                    
-                    // Add message to messages arry
-                    self.messages = Array(self.messagesDictionary.values)
-                    
-                    // Sort the messages
-                    self.messages.sort(by: { (mes1, mes2) -> Bool in
-                        guard let time1 = mes1.timestamp?.intValue else {return true}
-                        guard let time2 = mes2.timestamp?.intValue else {return true}
-                        return time1 > time2
-                        
-                    })
-                }
-                
-                // Reload data
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-            
-        }) { (error) in
-            print("Firebase: Messages: Error getting messages")
+    
+    
+    var timer: Timer?
+    
+    @objc func handleReloadTable(){
+        
+        // Reload data
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
-    
-    
     
     @objc func showChatControllerForUser(user: User){
         // Using CollectionViewController
