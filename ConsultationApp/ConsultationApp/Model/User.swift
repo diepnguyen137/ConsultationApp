@@ -1,26 +1,26 @@
 //
-//  User.swift
+//  User .swift
 //  ConsultationApp
 //
-//  Created by Thien Ho on 1/7/18.
+//  Created by admin on 1/8/18.
 //  Copyright © 2018 cosc2659. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import Firebase
 import FirebaseDatabase
 
 class User: NSObject {
-    var id: String?
-    var name: String?
+    //Properties
+    var id : String?
     var email: String?
+    var name : String?
+    var password: String?
+    var role: String?
+    var avatar: String?
     
-//    init(id:String, name: String, email: String) {
-//        self.id = id
-//        self.name = name
-//        self.email = email
-//    }
-    
-//    convenience override init() {
-//        self.init(id: "", name: "", email: "")
-//    }
+    //convert into Dictionary
+    func toAnyObject () ->[ String : Any] {
+        return ["email": email ?? "", "name": name ?? "", "password": password ?? "", "role":role ?? "", "avatar": avatar ?? "" ]
+    }
 }

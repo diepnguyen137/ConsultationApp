@@ -16,6 +16,10 @@ class MessagesController: UITableViewController {
     var messages = [Message]()
     var messagesDictionary = [String:Message]()
     
+    // For LOGGING
+    let printVC = "MessagesController:"
+    let printFirebase = "Firebase:"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +30,22 @@ class MessagesController: UITableViewController {
         // Logout Button
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         
+        // Check User
+        checkUser()
+        
         // Register Custom UserCell
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
+    }
+    
+    @objc func checkUser(){
+        let currentUser = Auth.auth().currentUser?.uid
+        print(printVC, printFirebase, "CurrentUser: \(currentUser ?? "NIL") ")
+        if currentUser == nil {
+            perform(#selector(handleLogout))
+        } else {
+            fetchUserAndSetupBarTitle()
+        }
     }
     
     
@@ -168,7 +185,16 @@ class MessagesController: UITableViewController {
     }
 
     @objc func handleLogout(){
-        print("Logout: Pressed")
+        print(printVC, printFirebase, "Logout: Pressed")
+        
+        do {
+            // Logout
+            try Auth.auth().signOut()
+            print(printVC, printFirebase, "Logout Completed")
+        } catch let logoutError {
+            print(printVC, printFirebase, logoutError)
+        }
+        
         
         // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -178,7 +204,9 @@ class MessagesController: UITableViewController {
     }
     
     @objc func fetchUserAndSetupBarTitle(){
-        guard let uid = "ME" as Optional else { return }      //TODO: Replace with Firebase CurrentUserID
+        print(printVC, printFirebase, "Fetching User: ....")
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        print(printVC, printFirebase, "Fetching User: \(uid)")
         
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? NSDictionary {
@@ -193,6 +221,8 @@ class MessagesController: UITableViewController {
     }
     
     @objc func setupNavBarWithUser(user: User) {
+        
+        // Clear Old Messages
         messages.removeAll()
         messagesDictionary.removeAll()
         tableView.reloadData()
