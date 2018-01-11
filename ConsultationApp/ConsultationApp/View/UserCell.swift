@@ -34,17 +34,9 @@ class UserCell: UITableViewCell {
         }
     }
     @objc private func setupNameAndProfileImage(){
-        let chatPartnerId: String?
-        
-        // Swap list user
-        if message?.fromId == Auth.auth().currentUser?.uid {
-            chatPartnerId = message?.toId
-        } else {
-            chatPartnerId = message?.fromId
-        }
         
         // Getting User Name by toId in message
-        if let id = chatPartnerId {
+        if let id = message?.chatPartnerId() {
             let refUser = Database.database().reference().child("users").child(id)
             refUser.observeSingleEvent(of: .value, with: { (snapshot) in
                 print("MessagesController: UserCell: Firebase: TOID: \(snapshot.key) ")

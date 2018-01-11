@@ -65,6 +65,27 @@ class MessagesController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        
+        guard let chatPartnerId = message.chatPartnerId() else { return }
+        
+        let refUser = Database.database().reference().child("users").child(chatPartnerId)
+        refUser.observeSingleEvent(of: .value) { (snapshot) in
+            print(self.printVC, self.printFirebase, "SelectRow: \(snapshot.key)")
+            
+            guard let dictionary = snapshot.value as? NSDictionary else { return }
+            
+            let user = User()
+            user.id = chatPartnerId
+            user.name = dictionary["name"] as? String ?? ""
+            user.email = dictionary["email"] as? String ?? ""
+            
+            self.showChatControllerForUser(user: user)
+        }
+        
+    }
+    
     // Setup Cell Height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 72
