@@ -61,11 +61,11 @@ class UserCell: UITableViewCell {
                                 print("Download Iamge: Error !!! \(error)")
                             } else {
                                 if let imageData = data {
-                                    DispatchQueue.main.async {
+//                                    DispatchQueue.main.async {
                                         //put Image to imageView in cell
                                         let image = UIImage(data: imageData)
                                         self.profileImageView.image = image
-                                    }
+//                                    }
     
                                 }
                             }
@@ -76,7 +76,7 @@ class UserCell: UITableViewCell {
             })
         }
     }
-    // TODO: Design LayoutSubviews
+    // ReDesign LayoutSubviews
     override func layoutSubviews() {
         super.layoutSubviews()
         
