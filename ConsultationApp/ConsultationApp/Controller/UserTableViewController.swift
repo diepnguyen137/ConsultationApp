@@ -14,6 +14,7 @@ import FirebaseStorage
 class UserTableViewController: UITableViewController, UserCellDelegate {
     
     
+
     //Properties
     var users = [User]()
     var refUser : DatabaseReference!
@@ -31,6 +32,7 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: .plain, target: self, action: #selector(handleLogout))
         self.navigationItem.title = "Admin"
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.green
         
         //Fetch user
         fetchUser()
@@ -57,7 +59,8 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
                 user.role = dictionary["role"] as? String ?? ""
-                print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.role ?? "") \(user.email ?? "")")
+                user.consultantRole = dictionary["consultantRole"] as? String ?? ""
+                print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.role ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
                 // Add user to users arraylist
                 self.users.append(user)
                 
@@ -68,21 +71,13 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
             }
         }, withCancel: nil)
     }
-    
-
     // MARK: - Table view data source
-//
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 1
-//    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return users.count
     }
-
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Deque Reuseable Cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UserTableViewCell
@@ -96,10 +91,37 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
         //Switch on if it is the Consultant and off otherwise
         if user.role == "User" {
             cell.switchRole.setOn(false, animated: true)
+            cell.generalBtn.isEnabled = false
+            cell.loveBtn.isEnabled = false
+            cell.stressBtn.isEnabled = false
+            cell.depressBtn.isEnabled = false
             
         }
         else if user.role == "Consultant" {
             cell.switchRole.setOn(true, animated: true)
+            cell.generalBtn.isEnabled = true
+            cell.loveBtn.isEnabled = true
+            cell.stressBtn.isEnabled = true
+            cell.depressBtn.isEnabled = true
+        }
+        
+        if user.consultantRole == "General" {
+            cell.generalBtn.isSelected = true
+        }
+        else if user.consultantRole == "Love" {
+            cell.loveBtn.isSelected = true
+        }
+        else if user.consultantRole == "Stress" {
+            cell.stressBtn.isSelected = true
+        }
+        else if user.consultantRole == "Depress" {
+            cell.depressBtn.isSelected = true
+        }
+        else {
+            cell.generalBtn.isSelected = false
+            cell.loveBtn.isSelected = false
+            cell.stressBtn.isSelected = false
+            cell.depressBtn.isSelected = false
         }
         
         //Create storage reference
@@ -125,27 +147,53 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     //Switch Role function
     func switchRoleChanged(sender: UserTableViewCell, check: Bool) {
         if let indexPath = tableView.indexPath(for: sender) {
-            //users[indexPath.row].role = "Consultant"
+            //If the switch is on so the person will be the consultant
             if check {
                 refUser.child(users[indexPath.row].id!).child("role").setValue("Consultant")
-                print("Switched at \(indexPath.row)")
-                print(check)
+                sender.depressBtn.isEnabled = true
+                sender.stressBtn.isEnabled = true
+                sender.loveBtn.isEnabled = true
+                sender.generalBtn.isEnabled = true
+                if users[indexPath.row].consultantRole == "" {
+                    sender.generalBtn.isSelected = false
+                    sender.loveBtn.isSelected = false
+                    sender.stressBtn.isSelected = false
+                    sender.depressBtn.isSelected = false
+                }
             }
+                //If the switch is off so the person will be the user
             else {
                 refUser.child(users[indexPath.row].id!).child("role").setValue("User")
-                print("Switched at \(indexPath.row)")
-                print(check)
+                refUser.child(users[indexPath.row].id!).child("consultantRole").setValue("")
+                sender.depressBtn.isEnabled = false
+                sender.stressBtn.isEnabled = false
+                sender.loveBtn.isEnabled = false
+                sender.generalBtn.isEnabled = false
+
             }
             
         }
         
+    }
+    // Consultant Role change
+    func consultantRoleChanged(sender: UserTableViewCell, tag: Int) {
+        if let indexPath = tableView.indexPath(for: sender) {
+            if tag == 1 {
+                refUser.child(users[indexPath.row].id!).child("consultantRole").setValue("General")
+            }
+            else if tag == 2 {
+                refUser.child(users[indexPath.row].id!).child("consultantRole").setValue("Love")
+            }
+            else if tag == 3 {
+                refUser.child(users[indexPath.row].id!).child("consultantRole").setValue("Stress")
+            }
+            else if tag == 4 {
+                refUser.child(users[indexPath.row].id!).child("consultantRole").setValue("Depress")
+            }
+        }
     }
 
     // MARK: - Navigation

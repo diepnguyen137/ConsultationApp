@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 protocol UserCellDelegate {
     func switchRoleChanged(sender : UserTableViewCell, check : Bool)
+    func consultantRoleChanged(sender : UserTableViewCell, tag : Int)
 }
 
 class UserTableViewCell: UITableViewCell {
@@ -23,14 +24,19 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var userEmail: UILabel!
     
     @IBOutlet weak var switchRole: UISwitch!
+    
+    @IBOutlet weak var generalBtn: DLRadioButton!
+    @IBOutlet weak var loveBtn: DLRadioButton!
+    @IBOutlet weak var stressBtn: DLRadioButton!
+    @IBOutlet weak var depressBtn: DLRadioButton!
+    
     var refUser : DatabaseReference!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        print("awakeFromNib: Start")
-//        userAvarta.layer.cornerRadius = userAvarta.frame.size.width / 2
-//        userAvarta.clipsToBounds = true
+        
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -45,4 +51,23 @@ class UserTableViewCell: UITableViewCell {
             delegate.switchRoleChanged(sender: self, check: sender.isOn)
         }
     }
+    
+    @IBAction func generalTapped(_ sender: DLRadioButton) {
+    }
+    
+    @IBAction func loveTapped(_ sender: DLRadioButton) {
+    }
+    
+    @IBAction func stressTapped(_ sender: DLRadioButton) {
+    }
+    
+    @IBAction func depressTapped(_ sender: DLRadioButton) {
+    }
+    
+    @IBAction func btnTapped(_ sender: DLRadioButton) {
+        if let delegate = self.delegate {
+            delegate.consultantRoleChanged(sender: self, tag: sender.tag)
+        }
+    }
+    
 }

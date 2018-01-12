@@ -49,6 +49,8 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                     user.email = self.emailTxtField.text! as String
                     user.password = self.passTxtField.text! as String
                     user.role = "User"
+                    user.consultantRole = ""
+                    
                     
                     let imageName = UUID().uuidString
                     let storageRef = Storage.storage().reference().child("profile_images").child("\(imageName).jpg")

@@ -26,6 +26,7 @@
 		8467B9472002FD0F00D95DA7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8467B9462002FD0F00D95DA7 /* User.swift */; };
 		846CA1BC1FFFC61E0004641D /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BB1FFFC61E0004641D /* LogInViewController.swift */; };
 		846CA1BE1FFFC72C0004641D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */; };
+		848E0FB920084491000ED038 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 848E0FB820084491000ED038 /* DLRadioButton.m */; };
 		84DF598C20046809001C2318 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF598B20046809001C2318 /* UserTableViewController.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
@@ -77,6 +78,9 @@
 		8467B9462002FD0F00D95DA7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		846CA1BB1FFFC61E0004641D /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		846CA1BD1FFFC72C0004641D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		848E0FB620084490000ED038 /* ConsultationApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConsultationApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		848E0FB720084491000ED038 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
+		848E0FB820084491000ED038 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		84DF598B20046809001C2318 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				848E0FB52008446B000ED038 /* Radio Button */,
 				84096B8620055B62000C14FD /* View */,
 				847AA6122003E638001D8788 /* Controller */,
 				847AA6112003E620001D8788 /* Model */,
@@ -213,6 +218,16 @@
 				84DF598B20046809001C2318 /* UserTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		848E0FB52008446B000ED038 /* Radio Button */ = {
+			isa = PBXGroup;
+			children = (
+				848E0FB720084491000ED038 /* DLRadioButton.h */,
+				848E0FB820084491000ED038 /* DLRadioButton.m */,
+				848E0FB620084490000ED038 /* ConsultationApp-Bridging-Header.h */,
+			);
+			path = "Radio Button";
 			sourceTree = "<group>";
 		};
 		ECEAF53C67DEC8EDB909A7FC /* Frameworks */ = {
@@ -302,6 +317,7 @@
 				TargetAttributes = {
 					841EFED01FF28975003CD9BF = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					841EFEE71FF28976003CD9BF = {
@@ -534,6 +550,7 @@
 				84096B8320055B43000C14FD /* ChatLogController.swift in Sources */,
 				841CD2D820006A8B00BDFA5A /* UserTableViewCell.swift in Sources */,
 				84096B8220055B43000C14FD /* NewMessageController.swift in Sources */,
+				848E0FB920084491000ED038 /* DLRadioButton.m in Sources */,
 				84DF598C20046809001C2318 /* UserTableViewController.swift in Sources */,
 				84096B8520055B4F000C14FD /* Message.swift in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
@@ -704,12 +721,15 @@
 			baseConfigurationReference = 0EAD2E6311A2B6659985E95F /* Pods-ConsultationApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConsultationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConsultationApp/Radio Button/ConsultationApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -720,12 +740,14 @@
 			baseConfigurationReference = 89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ConsultationApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConsultationApp/Radio Button/ConsultationApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

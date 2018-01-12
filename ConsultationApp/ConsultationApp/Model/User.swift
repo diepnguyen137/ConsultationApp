@@ -18,6 +18,7 @@ class User: NSObject {
     var password: String?
     var role: String?
     var avatar: String?
+    var consultantRole: String?
     
 //    init?(email: String, name: String, password:String, role: String, avatar: String) {
 //        if email.isEmpty || password.isEmpty || name.isEmpty {
@@ -51,6 +52,6 @@ class User: NSObject {
     
     //convert into Dictionary
     func toAnyObject () ->[ String : Any] {
-        return ["email": email ?? "", "name": name ?? "", "password": password ?? "", "role":role ?? "", "avatar": avatar ?? "" ]
+        return ["email": email ?? "", "name": name ?? "", "password": password ?? "", "role":role ?? "", "avatar": avatar ?? "" , "consultantRole": consultantRole ?? ""]
     }
 }

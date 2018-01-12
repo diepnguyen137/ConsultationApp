@@ -72,6 +72,7 @@
                             <constraint firstItem="ToC-DG-ZCL" firstAttribute="top" secondItem="qHe-T4-kc1" secondAttribute="bottom" constant="23" id="JdF-MA-8vo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qHe-T4-kc1" secondAttribute="trailing" constant="16" id="MOj-cW-ut7"/>
                             <constraint firstItem="qHe-T4-kc1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="VVF-8f-r2i"/>
+                            <constraint firstItem="Yp6-WR-Kf3" firstAttribute="top" secondItem="ToC-DG-ZCL" secondAttribute="bottom" constant="127" id="Vji-ev-mQi"/>
                             <constraint firstItem="ToC-DG-ZCL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="153" id="ap7-0b-a6m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cqs-aw-BRD" secondAttribute="trailing" constant="16" id="ebp-da-ZRW"/>
                             <constraint firstItem="cqs-aw-BRD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kOl-yO-JaH"/>
@@ -105,11 +106,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="u3f-2R-ejP" customClass="UserTableViewCell" customModule="ConsultationApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="150" id="u3f-2R-ejP" customClass="UserTableViewCell" customModule="ConsultationApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u3f-2R-ejP" id="alh-vp-WxA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="QiS-be-hdj">
@@ -120,40 +121,116 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nguyen Diep" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFs-Iw-h7S">
-                                            <rect key="frame" x="68" y="2" width="146.5" height="30"/>
+                                            <rect key="frame" x="68" y="2" width="195" height="30"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                             <color key="textColor" red="0.24175633274751479" green="0.62783471259428425" blue="0.45969114002486877" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="diep@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5u-Zf-zUa">
-                                            <rect key="frame" x="68" y="40" width="127" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="757" text="diep@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5u-Zf-zUa">
+                                            <rect key="frame" x="68" y="40" width="195" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h1i-E9-Xbb">
-                                            <rect key="frame" x="316" y="67" width="51" height="31"/>
+                                            <rect key="frame" x="320" y="10" width="51" height="31"/>
                                             <connections>
                                                 <action selector="switchRoleChanged:" destination="u3f-2R-ejP" eventType="valueChanged" id="0qh-vJ-wTr"/>
                                             </connections>
                                         </switch>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xJO-ci-WYu" customClass="DLRadioButton">
+                                            <rect key="frame" x="265" y="81" width="109" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="Depress">
+                                                <color key="titleColor" red="0.97115367649999995" green="0.26301065089999998" blue="0.22336566450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnTapped:" destination="u3f-2R-ejP" eventType="touchUpInside" id="diV-zc-vdF"/>
+                                                <outletCollection property="otherButtons" destination="ny8-Q5-Rue" id="ekm-CY-fLn"/>
+                                                <outletCollection property="otherButtons" destination="zSK-bt-Khy" id="JVc-AY-Ah1"/>
+                                                <outletCollection property="otherButtons" destination="Q89-MI-y8N" id="7IP-Hb-jhJ"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="754" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q89-MI-y8N" customClass="DLRadioButton">
+                                            <rect key="frame" x="180" y="81" width="65" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="KL7-S7-Ebd"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="Stress">
+                                                <color key="titleColor" red="0.098148289269999994" green="0.51194191529999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnTapped:" destination="u3f-2R-ejP" eventType="touchUpInside" id="dxn-9w-4gp"/>
+                                                <outletCollection property="otherButtons" destination="zSK-bt-Khy" id="HAg-Xv-rEE"/>
+                                                <outletCollection property="otherButtons" destination="ny8-Q5-Rue" id="3Ro-4Z-HpE"/>
+                                                <outletCollection property="otherButtons" destination="xJO-ci-WYu" id="c1O-MF-WBp"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSK-bt-Khy" customClass="DLRadioButton">
+                                            <rect key="frame" x="97" y="81" width="63" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="63" id="j3v-ER-XRz"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="Love">
+                                                <color key="titleColor" red="0.99730080369999996" green="0.46510434150000002" blue="0.55124020579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnTapped:" destination="u3f-2R-ejP" eventType="touchUpInside" id="fZh-1q-Yvg"/>
+                                                <outletCollection property="otherButtons" destination="ny8-Q5-Rue" id="fly-we-0hQ"/>
+                                                <outletCollection property="otherButtons" destination="Q89-MI-y8N" id="YtN-SR-7MJ"/>
+                                                <outletCollection property="otherButtons" destination="xJO-ci-WYu" id="eGh-cQ-rIL"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ny8-Q5-Rue" customClass="DLRadioButton">
+                                            <rect key="frame" x="9" y="81" width="68" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="lRd-u1-dNq"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="General">
+                                                <color key="titleColor" red="0.062121345699999997" green="0.67930294690000004" blue="0.29458731640000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="btnTapped:" destination="u3f-2R-ejP" eventType="touchUpInside" id="HnK-Uk-43w"/>
+                                                <outletCollection property="otherButtons" destination="zSK-bt-Khy" id="Dtq-hw-NLQ"/>
+                                                <outletCollection property="otherButtons" destination="Q89-MI-y8N" id="Mt9-xo-POl"/>
+                                                <outletCollection property="otherButtons" destination="xJO-ci-WYu" id="KAp-Up-GuC"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="QiS-be-hdj" firstAttribute="leading" secondItem="alh-vp-WxA" secondAttribute="leadingMargin" constant="2" id="4he-RT-EVe"/>
-                                        <constraint firstItem="QiS-be-hdj" firstAttribute="top" secondItem="alh-vp-WxA" secondAttribute="topMargin" constant="2" id="Cvz-FM-2S9"/>
-                                        <constraint firstItem="h1i-E9-Xbb" firstAttribute="top" secondItem="f5u-Zf-zUa" secondAttribute="bottom" constant="6" id="HF1-Ul-jGp"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="h1i-E9-Xbb" secondAttribute="bottom" constant="13.5" id="JeA-gE-6MO"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="f5u-Zf-zUa" secondAttribute="trailing" constant="20" symbolic="YES" id="OPm-dZ-qHw"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="iFs-Iw-h7S" secondAttribute="trailing" constant="20" symbolic="YES" id="Tvx-Pr-8Mv"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="h1i-E9-Xbb" secondAttribute="trailing" constant="2" id="WMg-oe-g7d"/>
-                                        <constraint firstItem="f5u-Zf-zUa" firstAttribute="leading" secondItem="QiS-be-hdj" secondAttribute="trailing" constant="8" id="eMr-2i-E6L"/>
-                                        <constraint firstItem="iFs-Iw-h7S" firstAttribute="top" secondItem="alh-vp-WxA" secondAttribute="top" constant="2" id="ele-z8-kIX"/>
-                                        <constraint firstItem="iFs-Iw-h7S" firstAttribute="leading" secondItem="QiS-be-hdj" secondAttribute="trailing" constant="8" id="oJV-TC-6La"/>
-                                        <constraint firstItem="f5u-Zf-zUa" firstAttribute="top" secondItem="iFs-Iw-h7S" secondAttribute="bottom" constant="8" id="puG-Z8-opE"/>
-                                        <constraint firstItem="iFs-Iw-h7S" firstAttribute="leading" secondItem="QiS-be-hdj" secondAttribute="trailing" constant="8" id="zBG-52-Rzj"/>
+                                        <constraint firstItem="f5u-Zf-zUa" firstAttribute="top" secondItem="iFs-Iw-h7S" secondAttribute="bottom" constant="8" id="0fQ-Lt-nUZ"/>
+                                        <constraint firstAttribute="bottom" secondItem="xJO-ci-WYu" secondAttribute="bottom" constant="34.5" id="0lj-dY-a1G"/>
+                                        <constraint firstItem="ny8-Q5-Rue" firstAttribute="top" secondItem="f5u-Zf-zUa" secondAttribute="bottom" constant="20" id="7GR-xH-9d4"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="f5u-Zf-zUa" secondAttribute="trailing" constant="104" id="8vT-z3-MHG"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="zSK-bt-Khy" secondAttribute="bottom" constant="26.5" id="9MV-3e-lSc"/>
+                                        <constraint firstItem="h1i-E9-Xbb" firstAttribute="trailing" secondItem="alh-vp-WxA" secondAttribute="trailingMargin" constant="2" id="AcQ-tJ-APg"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Q89-MI-y8N" secondAttribute="bottom" constant="26.5" id="B9R-vE-4oC"/>
+                                        <constraint firstItem="ny8-Q5-Rue" firstAttribute="leading" secondItem="alh-vp-WxA" secondAttribute="leadingMargin" constant="1" id="Dss-mu-FuS"/>
+                                        <constraint firstItem="h1i-E9-Xbb" firstAttribute="top" secondItem="alh-vp-WxA" secondAttribute="topMargin" constant="2" id="EWy-9P-9gF"/>
+                                        <constraint firstItem="h1i-E9-Xbb" firstAttribute="leading" secondItem="iFs-Iw-h7S" secondAttribute="trailing" constant="57" id="FcW-8P-fTr"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ny8-Q5-Rue" secondAttribute="bottom" constant="26.5" id="PcM-ra-61z"/>
+                                        <constraint firstItem="xJO-ci-WYu" firstAttribute="leading" secondItem="Q89-MI-y8N" secondAttribute="trailing" constant="20" id="YoR-lz-Zjt"/>
+                                        <constraint firstItem="f5u-Zf-zUa" firstAttribute="leading" secondItem="QiS-be-hdj" secondAttribute="trailing" constant="8" id="baR-KD-Mqn"/>
+                                        <constraint firstItem="zSK-bt-Khy" firstAttribute="leading" secondItem="ny8-Q5-Rue" secondAttribute="trailing" constant="20" id="d2D-g8-bPd"/>
+                                        <constraint firstItem="Q89-MI-y8N" firstAttribute="leading" secondItem="zSK-bt-Khy" secondAttribute="trailing" constant="20" id="g8T-Gx-lHg"/>
+                                        <constraint firstItem="xJO-ci-WYu" firstAttribute="top" secondItem="h1i-E9-Xbb" secondAttribute="bottom" constant="40" id="icI-ic-4Tb"/>
+                                        <constraint firstItem="QiS-be-hdj" firstAttribute="leading" secondItem="alh-vp-WxA" secondAttribute="leadingMargin" constant="2" id="jUv-1z-lgk"/>
+                                        <constraint firstItem="zSK-bt-Khy" firstAttribute="top" secondItem="f5u-Zf-zUa" secondAttribute="bottom" constant="20" id="k0u-MC-0nC"/>
+                                        <constraint firstAttribute="trailing" secondItem="xJO-ci-WYu" secondAttribute="trailing" constant="1" id="lVu-df-09r"/>
+                                        <constraint firstItem="iFs-Iw-h7S" firstAttribute="top" secondItem="alh-vp-WxA" secondAttribute="top" constant="2" id="mps-3H-9RF"/>
+                                        <constraint firstItem="iFs-Iw-h7S" firstAttribute="leading" secondItem="QiS-be-hdj" secondAttribute="trailing" constant="8" id="qW1-eT-xrk"/>
+                                        <constraint firstItem="QiS-be-hdj" firstAttribute="top" secondItem="alh-vp-WxA" secondAttribute="topMargin" constant="2" id="qyJ-Bp-KRF"/>
+                                        <constraint firstItem="Q89-MI-y8N" firstAttribute="top" secondItem="f5u-Zf-zUa" secondAttribute="bottom" constant="20" id="zLU-YT-4Wg"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="depressBtn" destination="xJO-ci-WYu" id="beK-QA-PQS"/>
+                                    <outlet property="generalBtn" destination="ny8-Q5-Rue" id="U8d-ll-jzg"/>
+                                    <outlet property="loveBtn" destination="zSK-bt-Khy" id="Dqm-eJ-z7p"/>
+                                    <outlet property="stressBtn" destination="Q89-MI-y8N" id="r5V-lc-3eS"/>
                                     <outlet property="switchRole" destination="h1i-E9-Xbb" id="wMJ-Ak-Ej0"/>
                                     <outlet property="userAvarta" destination="QiS-be-hdj" id="kXL-gj-NZx"/>
                                     <outlet property="userEmail" destination="f5u-Zf-zUa" id="AJX-Lc-9M9"/>
