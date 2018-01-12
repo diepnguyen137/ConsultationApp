@@ -80,6 +80,7 @@ class MessagesController: UITableViewController {
             user.id = chatPartnerId
             user.name = dictionary["name"] as? String ?? ""
             user.email = dictionary["email"] as? String ?? ""
+            user.avatar = dictionary["avatar"] as? String ?? ""
             
             self.showChatControllerForUser(user: user)
         }

@@ -75,6 +75,21 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         // Setup a chat field
         setupInputComponents()
+        
+        // Setup keyboard Observe
+        setupKeyboardObservers()
+    }
+    @objc func setupKeyboardObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
+    }
+    
+    @objc func handleKeyboardWillShow(){
+        // TODO: When keyboard is show
+    }
+    
+    @objc func handleKeyboardWillHide(){
+        // TODO: When keyboard is hdie
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,11 +112,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     private func setupCell(cell: ChatMessageCell, message: Message){
         // Load Image
-        // FIXME: fix load image
         if let profileImageUrl = self.user?.avatar {
             print("Firebase Storage: \(profileImageUrl)")
             let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
-            //                      Observe method to download the data (4MB)
+            //  Observe method to download the data (4MB)
             imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
                 if let error = error {
                     print("Download Iamge: Error !!! \(error)")
