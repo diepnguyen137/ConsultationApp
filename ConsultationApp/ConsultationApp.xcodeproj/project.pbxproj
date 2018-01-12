@@ -21,13 +21,14 @@
 		8C136BAE2004DA250019ED44 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BAD2004DA250019ED44 /* Message.swift */; };
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
 		8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */; };
+		8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */; };
+		8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD62008B14800AF28F7 /* PostController.swift */; };
+		8C83FDD92008B15400AF28F7 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C83FDD82008B15300AF28F7 /* Post.storyboard */; };
 		8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D62000DE7100801C14 /* ChatLogController.swift */; };
 		8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D82000EBD500801C14 /* NewMessageController.swift */; };
 		8CE074DC200262BD00801C14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074DB200262BD00801C14 /* User.swift */; };
-		C49F339A2008A74E0076EDA0 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C49F33992008A74E0076EDA0 /* Post.storyboard */; };
-		C49F339D2008A94B0076EDA0 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F339B2008A94B0076EDA0 /* PostController.swift */; };
-		C49F339E2008A94B0076EDA0 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F339C2008A94B0076EDA0 /* QuestionCell.swift */; };
-		C49F33A02008A99F0076EDA0 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F339F2008A99F0076EDA0 /* Problem.swift */; };
+		C49F33A22008B5AA0076EDA0 /* Problem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33A12008B5AA0076EDA0 /* Problem.swift */; };
+		C49F33A42008B5BA0076EDA0 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33A32008B5BA0076EDA0 /* QuestionCell.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -76,13 +77,14 @@
 		8C136BB02004FDEA0019ED44 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		8C83FDD62008B14800AF28F7 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		8C83FDD82008B15300AF28F7 /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		8CE074D82000EBD500801C14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMessageController.swift; path = ConsultationApp/Controller/NewMessageController.swift; sourceTree = SOURCE_ROOT; };
 		8CE074DB200262BD00801C14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		C49F33992008A74E0076EDA0 /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
-		C49F339B2008A94B0076EDA0 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
-		C49F339C2008A94B0076EDA0 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
-		C49F339F2008A99F0076EDA0 /* Problem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		C49F33A12008B5AA0076EDA0 /* Problem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Problem.swift; sourceTree = "<group>"; };
+		C49F33A32008B5BA0076EDA0 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -157,8 +159,8 @@
 				8CE074DA2002629200801C14 /* Model */,
 				8CE074D52000D93200801C14 /* Controller */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
-				C49F33992008A74E0076EDA0 /* Post.storyboard */,
 				841EFED81FF28975003CD9BF /* Main.storyboard */,
+				8C83FDD82008B15300AF28F7 /* Post.storyboard */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
 				841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */,
 				841EFEE01FF28975003CD9BF /* LaunchScreen.storyboard */,
@@ -189,7 +191,7 @@
 		8C136BAF2004FDAB0019ED44 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C49F339C2008A94B0076EDA0 /* QuestionCell.swift */,
+				C49F33A32008B5BA0076EDA0 /* QuestionCell.swift */,
 				8C136BB02004FDEA0019ED44 /* UserCell.swift */,
 				8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */,
 			);
@@ -199,11 +201,12 @@
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C49F339B2008A94B0076EDA0 /* PostController.swift */,
+				8C83FDD62008B14800AF28F7 /* PostController.swift */,
 				8C0701052005EFE00043D656 /* LogInViewController.swift */,
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
 				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
 				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
+				8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,7 +214,7 @@
 		8CE074DA2002629200801C14 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C49F339F2008A99F0076EDA0 /* Problem.swift */,
+				C49F33A12008B5AA0076EDA0 /* Problem.swift */,
 				8CE074DB200262BD00801C14 /* User.swift */,
 				8C136BAD2004DA250019ED44 /* Message.swift */,
 			);
@@ -347,7 +350,7 @@
 				841EFEE21FF28975003CD9BF /* LaunchScreen.storyboard in Resources */,
 				841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */,
 				841EFEDF1FF28975003CD9BF /* Assets.xcassets in Resources */,
-				C49F339A2008A74E0076EDA0 /* Post.storyboard in Resources */,
+				8C83FDD92008B15400AF28F7 /* Post.storyboard in Resources */,
 				841EFEDA1FF28975003CD9BF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,15 +535,16 @@
 				8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */,
 				8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */,
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
+				C49F33A42008B5BA0076EDA0 /* QuestionCell.swift in Sources */,
 				8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
+				8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */,
+				8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */,
+				C49F33A22008B5AA0076EDA0 /* Problem.swift in Sources */,
 				8CE074DC200262BD00801C14 /* User.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
-				C49F33A02008A99F0076EDA0 /* Problem.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
-				C49F339E2008A94B0076EDA0 /* QuestionCell.swift in Sources */,
-				C49F339D2008A94B0076EDA0 /* PostController.swift in Sources */,
 				8C136BAE2004DA250019ED44 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

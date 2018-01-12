@@ -171,14 +171,11 @@ class MessagesController: UITableViewController {
         print("NewMessage: Pressed")
         
         // Show New Message View
-//        let newMessageController = NewMessageController()
-//        newMessageController.messagesController = self
-//        let navController = UINavigationController(rootViewController: newMessageController)
-//        present(navController, animated: true, completion: nil)
+        let newMessageController = NewMessageController()
+        newMessageController.messagesController = self
+        let navController = UINavigationController(rootViewController: newMessageController)
+        present(navController, animated: true, completion: nil)
         
-        let storyboard = UIStoryboard(name: "Post", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "postCV")
-        present(vc, animated: true, completion: nil)
     }
 
     @objc func handleLogout(){
