@@ -83,13 +83,28 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
     }
+  
+    var containerViewBottomAnchor: NSLayoutConstraint?
     
-    @objc func handleKeyboardWillShow(){
-        // TODO: When keyboard is show
+    @objc func handleKeyboardWillShow(_ notification: Notification) {
+        // When keyboard show
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewBottomAnchor?.constant = -keyboardFrame!.height
+        UIView.animate(withDuration: keyboardDuration!, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
-    @objc func handleKeyboardWillHide(){
-        // TODO: When keyboard is hdie
+    @objc func handleKeyboardWillHide(_ notification: Notification) {
+        // When keybaoard hide
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewBottomAnchor?.constant = 0
+        UIView.animate(withDuration: keyboardDuration!, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -178,7 +193,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         // Constraint anchors x,y,w,h for container
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        containerViewBottomAnchor?.isActive = true
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
@@ -254,6 +270,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Send the messages to firebase
         handleSend()
+        textField.resignFirstResponder()
         return true
     }
 }
