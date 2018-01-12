@@ -13,8 +13,6 @@ import FirebaseStorage
 
 class UserTableViewController: UITableViewController, UserCellDelegate {
     
-    
-
     //Properties
     var users = [User]()
     var refUser : DatabaseReference!
@@ -200,11 +198,6 @@ class UserTableViewController: UITableViewController, UserCellDelegate {
     // Go back to Log in View
     @objc func handleLogout() {
         print("UserTableViewController: Logout navigation: Pressed")
-        // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
-//        self.navigationController?.pushViewController(vc, animated: true)
-        
         //create main storyboard instance
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         //from main storyboard instantiate navigation controller

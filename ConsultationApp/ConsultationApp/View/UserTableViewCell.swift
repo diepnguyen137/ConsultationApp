@@ -52,18 +52,6 @@ class UserTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func generalTapped(_ sender: DLRadioButton) {
-    }
-    
-    @IBAction func loveTapped(_ sender: DLRadioButton) {
-    }
-    
-    @IBAction func stressTapped(_ sender: DLRadioButton) {
-    }
-    
-    @IBAction func depressTapped(_ sender: DLRadioButton) {
-    }
-    
     @IBAction func btnTapped(_ sender: DLRadioButton) {
         if let delegate = self.delegate {
             delegate.consultantRoleChanged(sender: self, tag: sender.tag)
