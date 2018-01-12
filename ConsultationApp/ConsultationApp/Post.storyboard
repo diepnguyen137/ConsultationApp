@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,11 +51,99 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Cases" id="D8K-vV-AQO"/>
+                    <navigationItem key="navigationItem" title="Cases" id="D8K-vV-AQO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sCy-sm-1kK">
+                            <connections>
+                                <segue destination="FNG-yC-cHh" kind="presentation" identifier="AddItem" id="qol-fy-3fS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Efx-3H-T8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730.39999999999998" y="125.4872563718141"/>
+            <point key="canvasLocation" x="1069.5999999999999" y="125.4872563718141"/>
+        </scene>
+        <!--New Case-->
+        <scene sceneID="8w1-Wu-c3h">
+            <objects>
+                <viewController id="SN4-5K-MAc" customClass="NewPostController" customModule="ConsultationApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wW6-sc-0Jk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eIB-5Y-7AC">
+                                <rect key="frame" x="16" y="80" width="343" height="287"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcA-P1-lHH">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Add a question" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Kw-wZ-1Ik">
+                                        <rect key="frame" x="0.0" y="28.5" width="343" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="1X6-Pu-tbc"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="questionText:" destination="LlM-ox-QYR" eventType="editingDidEnd" id="Ple-hG-ksQ"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suggestion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWt-Dz-MUk">
+                                        <rect key="frame" x="0.0" y="136.5" width="91" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="0eB-aS-n7Q"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Add a suggestion" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b5F-zk-Q2P">
+                                        <rect key="frame" x="0.0" y="165.5" width="343" height="121.5"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="5Kw-wZ-1Ik" secondAttribute="trailing" id="CtK-pR-ulN"/>
+                                    <constraint firstAttribute="trailing" secondItem="b5F-zk-Q2P" secondAttribute="trailing" id="SDk-zF-kyI"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="eIB-5Y-7AC" secondAttribute="trailing" id="EK5-ep-7XY"/>
+                            <constraint firstItem="eIB-5Y-7AC" firstAttribute="top" secondItem="QmU-iq-nlu" secondAttribute="top" constant="16" id="Fkr-hF-5pe"/>
+                            <constraint firstItem="eIB-5Y-7AC" firstAttribute="leading" secondItem="wW6-sc-0Jk" secondAttribute="leadingMargin" id="pOd-vv-WIe"/>
+                            <constraint firstItem="QmU-iq-nlu" firstAttribute="bottom" secondItem="eIB-5Y-7AC" secondAttribute="bottom" constant="300" id="uGK-Kf-oSg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QmU-iq-nlu"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Case" id="6lC-Wv-Wga">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7Q6-7L-iUC">
+                            <connections>
+                                <action selector="cancelBtn:" destination="SN4-5K-MAc" id="WOf-tI-utx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="j38-qO-XaN">
+                            <connections>
+                                <action selector="saveBtn:" destination="SN4-5K-MAc" id="xOd-Ne-7rh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="questionText" destination="5Kw-wZ-1Ik" id="nef-uR-1mt"/>
+                        <outlet property="solutionText" destination="b5F-zk-Q2P" id="E8U-ah-b1U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qva-LD-gD1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="LlM-ox-QYR" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2496.8000000000002" y="846.9265367316342"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="nWc-gm-akQ">
@@ -107,25 +196,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DAZ-Ec-lPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1820" y="126.38680659670166"/>
+            <point key="canvasLocation" x="2159.1999999999998" y="126.38680659670166"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="VI3-0t-a4D">
+        <scene sceneID="njJ-lA-iV8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EF6-TQ-iiC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="postNavi" automaticallyAdjustsScrollViewInsets="NO" id="Zpr-7l-402" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2lM-Y9-4XR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vaI-4F-cfY">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Onh-SG-BGF" kind="relationship" relationship="rootViewController" id="bmy-k3-w5l"/>
+                        <segue destination="Onh-SG-BGF" kind="relationship" relationship="rootViewController" id="B2v-Db-Gal"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="da6-2Y-9Lj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oob-uD-nr8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-322" y="125"/>
+            <point key="canvasLocation" x="14" y="125"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zGk-3S-L5n">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FNG-yC-cHh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fVf-dX-XUR">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SN4-5K-MAc" kind="relationship" relationship="rootViewController" id="yiB-A7-hjT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BXt-rJ-Uyp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1601" y="847"/>
         </scene>
     </scenes>
 </document>
