@@ -21,6 +21,9 @@
 		8C136BAE2004DA250019ED44 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BAD2004DA250019ED44 /* Message.swift */; };
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
 		8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */; };
+		8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */; };
+		8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD62008B14800AF28F7 /* PostController.swift */; };
+		8C83FDD92008B15400AF28F7 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C83FDD82008B15300AF28F7 /* Post.storyboard */; };
 		8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D62000DE7100801C14 /* ChatLogController.swift */; };
 		8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074D82000EBD500801C14 /* NewMessageController.swift */; };
 		8CE074DC200262BD00801C14 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE074DB200262BD00801C14 /* User.swift */; };
@@ -72,6 +75,9 @@
 		8C136BB02004FDEA0019ED44 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
+		8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		8C83FDD62008B14800AF28F7 /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		8C83FDD82008B15300AF28F7 /* Post.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		8CE074D62000DE7100801C14 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		8CE074D82000EBD500801C14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewMessageController.swift; path = ConsultationApp/Controller/NewMessageController.swift; sourceTree = SOURCE_ROOT; };
 		8CE074DB200262BD00801C14 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -150,6 +156,7 @@
 				8CE074D52000D93200801C14 /* Controller */,
 				841EFED41FF28975003CD9BF /* AppDelegate.swift */,
 				841EFED81FF28975003CD9BF /* Main.storyboard */,
+				8C83FDD82008B15300AF28F7 /* Post.storyboard */,
 				841EFEDE1FF28975003CD9BF /* Assets.xcassets */,
 				841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */,
 				841EFEE01FF28975003CD9BF /* LaunchScreen.storyboard */,
@@ -189,10 +196,12 @@
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C83FDD62008B14800AF28F7 /* PostController.swift */,
 				8C0701052005EFE00043D656 /* LogInViewController.swift */,
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
 				8CE074D82000EBD500801C14 /* NewMessageController.swift */,
 				8CE074D62000DE7100801C14 /* ChatLogController.swift */,
+				8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -335,6 +344,7 @@
 				841EFEE21FF28975003CD9BF /* LaunchScreen.storyboard in Resources */,
 				841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */,
 				841EFEDF1FF28975003CD9BF /* Assets.xcassets in Resources */,
+				8C83FDD92008B15400AF28F7 /* Post.storyboard in Resources */,
 				841EFEDA1FF28975003CD9BF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +531,8 @@
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
 				8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
+				8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */,
+				8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */,
 				8CE074DC200262BD00801C14 /* User.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,

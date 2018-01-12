@@ -23,9 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create Window
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
+
+//        // Connect to ViewController
+//        window?.rootViewController = UINavigationController(rootViewController: MessagesController())
         
-        // Connect to ViewController
-        window?.rootViewController = UINavigationController(rootViewController: MessagesController())
+        // Conntect to CustomeTabBarController
+        window?.rootViewController = CustomTabBarController()
         
         return true
     }
