@@ -45,6 +45,7 @@ class NewMessageController: UITableViewController {
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
+                user.consultantRole = dictionary["consultantRole"] as? String ?? ""
                 
                 print("Firebase: User: \(user.id ?? "") \(user.name ?? "") \(user.email ?? "")")
                 // Add user to users arraylist
@@ -73,6 +74,23 @@ class NewMessageController: UITableViewController {
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
         cell.detailTextLabel?.text = user.email
+        
+        // Change color role
+        switch user.consultantRole {
+        case "Love"?:
+            cell.roleLabel.textColor = UIColor.magenta
+        case "Depress"?:
+            cell.roleLabel.textColor = UIColor.red
+        case "Stress"?:
+            cell.roleLabel.textColor = UIColor.blue
+        case "General"?:
+            cell.roleLabel.textColor = UIColor.green
+        case .none:
+            print("NONE")
+        case .some(_):
+            print("SOME")
+        }
+        cell.roleLabel.text = user.consultantRole
         
         // Load Image
         if let profileImageUrl = user.avatar {

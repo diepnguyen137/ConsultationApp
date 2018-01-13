@@ -17,6 +17,7 @@ class UserCell: UITableViewCell {
     var message: Message? {
         didSet{
             
+            // Setup Name and ProfileImage
             setupNameAndProfileImage()
             
             // Set detail table by message
@@ -33,6 +34,8 @@ class UserCell: UITableViewCell {
             }
         }
     }
+    
+    
     @objc private func setupNameAndProfileImage(){
         
         // Getting User Name by toId in message
@@ -43,6 +46,23 @@ class UserCell: UITableViewCell {
                 
                 if let dictionary = snapshot.value as? NSDictionary {
                     self.textLabel?.text = dictionary["name"] as? String
+                    let consultantRole = dictionary["consultantRole"] as? String
+                    // Change color role
+                    switch consultantRole {
+                    case "Love"?:
+                        self.roleLabel.textColor = UIColor.magenta
+                    case "Depress"?:
+                        self.roleLabel.textColor = UIColor.red
+                    case "Stress"?:
+                        self.roleLabel.textColor = UIColor.blue
+                    case "General"?:
+                        self.roleLabel.textColor = UIColor.green
+                    case .none:
+                        print("NONE")
+                    case .some(_):
+                        print("SOME")
+                    }
+                    self.roleLabel.text = consultantRole
                     
                     if let profileImageUrl = dictionary["avatar"] as? String {
                         let imgStorageRef = Storage.storage().reference(forURL: profileImageUrl)
@@ -84,6 +104,16 @@ class UserCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
+
+    // Get roleConsultant
+    let roleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "LOVE"
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = UIColor.magenta
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     // Time Label
     let timeLabel: UILabel = {
@@ -100,12 +130,19 @@ class UserCell: UITableViewCell {
         // Add to subview
         addSubview(timeLabel)
         addSubview(profileImageView)
+        addSubview(roleLabel)
         
         // Constraint anchor for profileImageView
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        
+        // Constraint anchor for RoleLabel
+        roleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 200).isActive = true
+        roleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
+        roleLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        roleLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
         
         // Constraint anchor for timelabel
         timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true

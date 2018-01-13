@@ -76,6 +76,7 @@ class MessagesController: UITableViewController {
             
             guard let dictionary = snapshot.value as? NSDictionary else { return }
             
+            // Fill to User from Firebase
             let user = User()
             user.id = chatPartnerId
             user.name = dictionary["name"] as? String ?? ""
@@ -98,6 +99,7 @@ class MessagesController: UITableViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let ref = Database.database().reference().child("user-messages").child(uid)
         
+        // Listener Messages
         ref.observe(.childAdded) { (snapshot) in
             print("MessagesController: UserMessages: \(snapshot.key) ")
             
@@ -107,6 +109,7 @@ class MessagesController: UITableViewController {
             messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
                 print("MessagesController: Messages: \(snapshot) ")
                 
+                // Get all messges from firebase
                 if let dictionary = snapshot.value as? NSDictionary {
                     let message = Message()
                     message.fromId = dictionary["fromId"] as? String ?? ""
