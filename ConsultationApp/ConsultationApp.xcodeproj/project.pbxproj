@@ -19,6 +19,11 @@
 		8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0701052005EFE00043D656 /* LogInViewController.swift */; };
 		8C136BAE2004DA250019ED44 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BAD2004DA250019ED44 /* Message.swift */; };
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
+		8C2E61822009F933005A6535 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E617F2009F932005A6535 /* UserTableViewController.swift */; };
+		8C2E61832009F933005A6535 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61802009F933005A6535 /* RegisterViewController.swift */; };
+		8C2E61842009F933005A6535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61812009F933005A6535 /* ViewController.swift */; };
+		8C2E61862009F940005A6535 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61852009F940005A6535 /* UserTableViewCell.swift */; };
+		8C2E618B2009F959005A6535 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61882009F959005A6535 /* DLRadioButton.m */; };
 		8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */; };
 		8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */; };
 		8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD62008B14800AF28F7 /* PostController.swift */; };
@@ -71,6 +76,13 @@
 		8C0701052005EFE00043D656 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		8C136BAD2004DA250019ED44 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8C136BB02004FDEA0019ED44 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		8C2E617F2009F932005A6535 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
+		8C2E61802009F933005A6535 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8C2E61812009F933005A6535 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8C2E61852009F940005A6535 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		8C2E61882009F959005A6535 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
+		8C2E61892009F959005A6535 /* ConsultationApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConsultationApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		8C2E618A2009F959005A6535 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		8C4B3DB2E998E928A61CECDE /* Pods-ConsultationAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppUITests/Pods-ConsultationAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		8C83FDD42008AAA900AF28F7 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -149,6 +161,7 @@
 		841EFED31FF28975003CD9BF /* ConsultationApp */ = {
 			isa = PBXGroup;
 			children = (
+				8C2E61872009F959005A6535 /* Radio Button */,
 				8C136BAF2004FDAB0019ED44 /* View */,
 				8CE074DA2002629200801C14 /* Model */,
 				8CE074D52000D93200801C14 /* Controller */,
@@ -184,15 +197,29 @@
 		8C136BAF2004FDAB0019ED44 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8C2E61852009F940005A6535 /* UserTableViewCell.swift */,
 				8C136BB02004FDEA0019ED44 /* UserCell.swift */,
 				8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
+		8C2E61872009F959005A6535 /* Radio Button */ = {
+			isa = PBXGroup;
+			children = (
+				8C2E61882009F959005A6535 /* DLRadioButton.m */,
+				8C2E61892009F959005A6535 /* ConsultationApp-Bridging-Header.h */,
+				8C2E618A2009F959005A6535 /* DLRadioButton.h */,
+			);
+			path = "Radio Button";
+			sourceTree = "<group>";
+		};
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8C2E61802009F933005A6535 /* RegisterViewController.swift */,
+				8C2E617F2009F932005A6535 /* UserTableViewController.swift */,
+				8C2E61812009F933005A6535 /* ViewController.swift */,
 				8C83FDD62008B14800AF28F7 /* PostController.swift */,
 				8C0701052005EFE00043D656 /* LogInViewController.swift */,
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
@@ -522,16 +549,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C2E61842009F933005A6535 /* ViewController.swift in Sources */,
 				8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */,
 				8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */,
+				8C2E61822009F933005A6535 /* UserTableViewController.swift in Sources */,
+				8C2E61862009F940005A6535 /* UserTableViewCell.swift in Sources */,
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
 				8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
 				8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */,
 				8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */,
 				8CE074DC200262BD00801C14 /* User.swift in Sources */,
+				8C2E61832009F933005A6535 /* RegisterViewController.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
+				8C2E618B2009F959005A6535 /* DLRadioButton.m in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
 				8C136BAE2004DA250019ED44 /* Message.swift in Sources */,
 			);
@@ -698,6 +730,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConsultationApp/Radio Button/ConsultationApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -714,6 +747,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cosc2659.ConsultationApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConsultationApp/Radio Button/ConsultationApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

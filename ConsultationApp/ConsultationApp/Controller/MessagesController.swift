@@ -194,7 +194,7 @@ class MessagesController: UITableViewController {
         // For login controller Swift 4: Connect to ViewController In MainStoryboard programmatically
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "logInCV")
-        self.navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true, completion: nil)
         
     }
     

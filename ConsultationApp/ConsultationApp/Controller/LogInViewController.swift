@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,6 +21,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var adminUsername:String = "admin"
     var adminPass:String = "admin"
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,11 +31,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         userTxtField.delegate = self
         passwdTxtField.delegate = self
-        
+  
         
         // FIXME: For testing
-        userTxtField.text = "thien@gmail.com"
-        passwdTxtField.text = "123456"
+        userTxtField.text = adminUsername
+        passwdTxtField.text = adminPass
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,11 +73,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
             
         }
-        
-        
-
     }
-    
+
     @IBAction func registerBtnTapped(_ sender: Any) {
         
         //switch view by setting navigation view as root view controller
