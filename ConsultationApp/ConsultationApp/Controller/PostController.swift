@@ -10,7 +10,10 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 
-class PostController: UITableViewController {
+
+class PostController: UITableViewController , PostCellDelegate{
+  
+    
 
     //MARK: Properties
     
@@ -161,12 +164,7 @@ class PostController: UITableViewController {
             cell.show.isHidden = true
             
         }
-        
-       
-       
-        
-    
-    
+        cell.delegate = self
         return cell
     }
     
@@ -206,30 +204,57 @@ class PostController: UITableViewController {
     }
     */
 
+    func showDetail(sender: PostCell) {
+        
+                guard let indexPath = tableView.indexPath(for: sender) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+        
+                let detailController = DetailController()
+
+                let selectedPost = posts[indexPath.row]
+                detailController.post = selectedPost
+        
+                print("Post Controller: show Detail ", selectedPost.question)
+        
+                //Go to ChatLogController
+                //navigationController?.pushViewController(detailController, animated: true)
+
+            }
+    
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//
-//
-//        guard let PostDetailViewController = segue.destination as? DetailController else {
-//            fatalError("Unexpected destination: \(segue.destination)")
-//        }
-//
-//        guard let selectedPostCell = sender as? PostCell else {
-//            fatalError("Unexpected sender: \(sender)")
-//        }
-//
-//        guard let indexPath = tableView.indexPath(for: selectedPostCell) else {
-//            fatalError("The selected cell is not being displayed by the table")
-//        }
-//
-//        let selectedPost = posts[indexPath.row]
-//        PostDetailViewController.post = selectedPost
-//
-//    }
-//
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "showDetail":
+           
+            guard let PostDetailViewController = segue.destination as? DetailController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedPostCell = sender as? PostCell else {
+                fatalError("Unexpected sender: \(sender)")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedPostCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedPost = posts[indexPath.row]
+            PostDetailViewController.post = selectedPost
+        
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        }
+
+
+
+}
 }

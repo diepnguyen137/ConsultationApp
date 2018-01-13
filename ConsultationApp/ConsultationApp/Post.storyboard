@@ -119,6 +119,7 @@
                                     <outlet property="solutionTView" destination="VI1-K5-hR8" id="qry-Zs-ORy"/>
                                     <outlet property="userEmail" destination="nem-QK-Qpq" id="Un5-dY-mOU"/>
                                     <outlet property="username" destination="UwK-X7-y5p" id="GJX-r1-5qZ"/>
+                                    <segue destination="qot-hT-tKu" kind="show" identifier="showDetail" id="iGg-0U-K1R"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -218,13 +219,13 @@
         <!--Detail Controller-->
         <scene sceneID="nWc-gm-akQ">
             <objects>
-                <viewController id="qot-hT-tKu" customClass="DetailController" customModule="ConsultationApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailCV" id="qot-hT-tKu" customClass="DetailController" customModule="ConsultationApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mn8-uq-UYg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="uKB-Of-Z8O">
-                                <rect key="frame" x="16" y="36" width="343" height="296.5"/>
+                                <rect key="frame" x="16" y="80" width="343" height="296.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkB-dP-ITL">
                                         <rect key="frame" x="0.0" y="0.0" width="72.5" height="20.5"/>

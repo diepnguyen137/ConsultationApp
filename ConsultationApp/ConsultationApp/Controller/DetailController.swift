@@ -12,6 +12,7 @@ class DetailController: UIViewController {
 
     @IBOutlet weak var questionTV: UITextView!
     @IBOutlet weak var solutionTV: UITextView!
+    @IBOutlet weak var questionLabel: UILabel!
     var post:Post?
     
     
@@ -19,11 +20,17 @@ class DetailController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let post = post {
-            questionTV.text = post.question
-            solutionTV.text = post.solution
-        }
+        //print("DetailView:", post?.question ?? "")
+        //let postController = PostController()
+        //let post = postController.posts
+        //print(post)
+        //let question = post?.question as! String?
+//        print("DetailView: Question: ", question)
+        questionTV.text = post?.question
+        solutionTV.text = post?.solution
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
