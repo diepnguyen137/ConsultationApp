@@ -15,7 +15,7 @@ class PostController: UITableViewController {
     //MARK: Properties
     
     var posts = [Post]()
-    var user:User?
+    var role: String!
     var refPost:DatabaseReference!
     var refUser:DatabaseReference!
     
@@ -33,7 +33,6 @@ class PostController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -107,7 +106,7 @@ class PostController: UITableViewController {
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
                 user.consultantRole = dictionary["consultantRole"] as? String ?? ""
-                user.role = dictionary["Role"] as? String ?? ""
+                user.role = dictionary["role"] as? String ?? ""
 
 
 //                print("PostController: tableViewCell: ", self.user?.name)
@@ -115,6 +114,23 @@ class PostController: UITableViewController {
                 cell.username.text = user.name
                 cell.userEmail.text = user.email
                 cell.consultantRole.text = user.consultantRole
+                
+                if user.role == "User" {
+                    self.addBtn.isEnabled = false
+                }
+                if user.consultantRole == "Love" {
+                    cell.consultantRole.textColor = UIColor.magenta
+                }
+                else if user.consultantRole == "General" {
+                    cell.consultantRole.textColor = UIColor.green
+                }
+                else if user.consultantRole == "Stress" {
+                    cell.consultantRole.textColor = UIColor.blue
+                }
+                else if user.consultantRole == "Depress" {
+                    cell.consultantRole.textColor = UIColor.red
+                }
+                
                 
                 let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
                 //Observe method to download the data (4MB)
@@ -136,15 +152,6 @@ class PostController: UITableViewController {
                         }
                     }
                 }
-                
-                if user.role == "User" {
-                    self.addBtn.isEnabled = false
-                    self.addBtn. = true
-                }
-                
-                
-
-
             }
         }, withCancel: nil)
        
@@ -154,6 +161,9 @@ class PostController: UITableViewController {
             cell.show.isHidden = true
             
         }
+        
+       
+       
         
     
     

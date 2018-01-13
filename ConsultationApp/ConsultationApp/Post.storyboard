@@ -124,10 +124,10 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Post Feed" id="D8K-vV-AQO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sCy-sm-1kK"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="8cY-jG-eK0"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addBtn" destination="sCy-sm-1kK" id="pzT-va-GHC"/>
+                        <outlet property="addBtn" destination="8cY-jG-eK0" id="G1O-UG-gAh"/>
                     </connections>
                 </viewController>
             </objects>
