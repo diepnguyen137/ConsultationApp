@@ -8,23 +8,18 @@
 
 import UIKit
 
-class Problem:NSObject {
+class Post:NSObject {
     
     //MARK: Properties
     
     var question: String?
     var solution: String?
     var userID : String?
+    var topic: String? 
     
     
     //MARK: Initialization
     
-//    init(question: String, solution: String) {
-//        
-//        // Initialize stored properties.
-//        self.question = question
-//        self.solution = solution
-//    }
     //convert into Dictionary
     func toAnyObject () ->[ String : Any] {
         return ["question": question ?? "", "answer": solution ?? "", "userID": userID ?? ""]

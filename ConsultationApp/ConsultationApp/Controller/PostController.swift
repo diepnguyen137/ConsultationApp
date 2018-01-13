@@ -8,24 +8,27 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class PostController: UITableViewController {
 
     //MARK: Properties
     
-    var problems = [Problem]()
+    var posts = [Post]()
+    var user:User?
     var refPost:DatabaseReference!
+    var refUser:DatabaseReference!
+    
+    @IBOutlet weak var addBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         refPost = Database.database().reference().child("posts")
+        refUser = Database.database().reference().child("users")
         
-        // Load the sample data.
-        //loadSampleProblems()
-        fetchData()
+        fetchPostData()
         
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,11 +50,11 @@ class PostController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return problems.count
+        return posts.count
     }
 
     //Firebase fetch data
-    func fetchData(){
+    func fetchPostData(){
         refPost.observe(.childAdded, with: { (snapshot) in
             
             print("Firebase: Post found")
@@ -59,15 +62,15 @@ class PostController: UITableViewController {
             
             // Add all user to dictionary for Swift 4
             if let dictionary = snapshot.value as? NSDictionary {
-                let problem = Problem()
-                problem.question = dictionary["question"] as? String ?? ""
-                problem.solution = dictionary["answer"] as? String ?? ""
-                problem.userID = dictionary["userID"] as? String ?? ""
+                let post = Post()
+                post.question = dictionary["question"] as? String ?? ""
+                post.solution = dictionary["answer"] as? String ?? ""
+                post.userID = dictionary["userID"] as? String ?? ""
                 
                 
-                print("Firebase: post: \(problem.question ?? "") \(problem.solution ?? "") \(problem.userID ?? "")")
+                print("Firebase: post: \(post.question ?? "") \(post.solution ?? "") \(post.userID ?? "")")
                 // Add user to users arraylist
-                self.problems.append(problem)
+                self.posts.append(post)
                 
                 // Reload data and avoid crashing
                 DispatchQueue.main.async {
@@ -77,18 +80,83 @@ class PostController: UITableViewController {
         }, withCancel: nil)
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? QuestionCell  else {
-            fatalError("The dequeued cell is not an instance of QuestionCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PostCell  else {
+            fatalError("The dequeued cell is not an instance of PostCell.")
         }
         
         // Fetches the appropriate problem for the data source layout.
-        let problem = problems[indexPath.row]
+        let post = posts[indexPath.row]
+        let uid = posts[indexPath.row].userID
+    
+        cell.questionTView.text = post.question
+        cell.solutionTView.text = post.solution
         
-        cell.nameLabel.text = "Question"
-        cell.sample.text = problem.question
+        refUser.child(uid!).observe(.value, with: { (snapshot) in
+            
+            print("PostController: Firebase: User found")
+            print("PostController: Firebase: \(snapshot)")
+            
+//            // Add all user to dictionary for Swift 4
+            if let dictionary = snapshot.value as? NSDictionary {
+                let user = User()
+                
+                user.name = dictionary["name"] as? String ?? ""
+                user.email = dictionary["email"] as? String ?? ""
+                user.avatar = dictionary["avatar"] as? String ?? ""
+                user.consultantRole = dictionary["consultantRole"] as? String ?? ""
+                user.role = dictionary["Role"] as? String ?? ""
+
+
+//                print("PostController: tableViewCell: ", self.user?.name)
+                print("PostController: tableViewCell: user: \(user.name ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
+                cell.username.text = user.name
+                cell.userEmail.text = user.email
+                cell.consultantRole.text = user.consultantRole
+                
+                let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
+                //Observe method to download the data (4MB)
+                imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                    if let error = error {
+                        print("Download Iamge: Error !!! \(error)")
+                    } else {
+                        if let imageData = data {
+                            DispatchQueue.main.async {
+                                //put Image to imageView in cell
+                                let image = UIImage(data: imageData)
+                                cell.avatar.image = image
+                                //Make circle image
+                                cell.avatar.layer.cornerRadius = cell.avatar.frame.size.width / 2
+                                cell.avatar.clipsToBounds = true
+
+                            }
+                            
+                        }
+                    }
+                }
+                
+                if user.role == "User" {
+                    self.addBtn.isEnabled = false
+                    self.addBtn. = true
+                }
+                
+                
+
+
+            }
+        }, withCancel: nil)
+       
+
+        if cell.solutionTView.text.count < 100 {
+            cell.show.isEnabled = false
+            cell.show.isHidden = true
+            
+        }
         
+    
+    
         return cell
     }
     
@@ -128,24 +196,30 @@ class PostController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    //MARK: Private Methods
-    
-//    private func loadSampleProblems() {
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
 //
-//        let problem1 = Problem(question: "How can I ...", solution: "You can either do this or that to ...")
-//        let problem2 = Problem(question: "What is the best way to ...", solution: "You need to ...")
 //
-//        problems += [problem1, problem2]
+//        guard let PostDetailViewController = segue.destination as? DetailController else {
+//            fatalError("Unexpected destination: \(segue.destination)")
+//        }
+//
+//        guard let selectedPostCell = sender as? PostCell else {
+//            fatalError("Unexpected sender: \(sender)")
+//        }
+//
+//        guard let indexPath = tableView.indexPath(for: selectedPostCell) else {
+//            fatalError("The selected cell is not being displayed by the table")
+//        }
+//
+//        let selectedPost = posts[indexPath.row]
+//        PostDetailViewController.post = selectedPost
+//
 //    }
-    
+//
 }

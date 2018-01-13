@@ -18,16 +18,13 @@ class NewPostController: UIViewController {
     
     @IBAction func saveBtn(_ sender: Any) {
         
-        let post = Problem()
+        let post = Post()
         post.question = self.questionText.text! as String
         post.solution = self.solutionText.text! as String
         post.userID = Auth.auth().currentUser?.uid as? String
         
         let key  = postRef.childByAutoId().key
         postRef.child(key).setValue(post.toAnyObject())
-        
-        
-        
         
     }
     
