@@ -11,16 +11,16 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-class PostController: UITableViewController , PostCellDelegate{
-  
-    
+class PostController: UITableViewController{
 
     //MARK: Properties
     
+    var user: User?
     var posts = [Post]()
     var role: String!
     var refPost:DatabaseReference!
     var refUser:DatabaseReference!
+    var topic:String!
     
     @IBOutlet weak var addBtn: UIBarButtonItem!
     
@@ -68,11 +68,16 @@ class PostController: UITableViewController , PostCellDelegate{
                 post.question = dictionary["question"] as? String ?? ""
                 post.solution = dictionary["answer"] as? String ?? ""
                 post.userID = dictionary["userID"] as? String ?? ""
+                post.topic = dictionary["topic"] as? String ?? ""
                 
                 
-                print("Firebase: post: \(post.question ?? "") \(post.solution ?? "") \(post.userID ?? "")")
+                print("Firebase: post: \(post.question ?? "") \(post.solution ?? "") \(post.userID ?? "") \(post.topic ?? "")")
+                print("Firebase: post: Topic: ",self.topic)
                 // Add user to users arraylist
-                self.posts.append(post)
+                if post.topic == self.topic {
+                    self.posts.append(post)
+                    print("Firebase post: Array Post", post)
+                }
                 
                 // Reload data and avoid crashing
                 DispatchQueue.main.async {
@@ -82,10 +87,9 @@ class PostController: UITableViewController , PostCellDelegate{
         }, withCancel: nil)
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PostCell  else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostCell  else {
             fatalError("The dequeued cell is not an instance of PostCell.")
         }
         
@@ -95,16 +99,16 @@ class PostController: UITableViewController , PostCellDelegate{
     
         cell.questionTView.text = post.question
         cell.solutionTView.text = post.solution
-        
+
         refUser.child(uid!).observe(.value, with: { (snapshot) in
-            
+
             print("PostController: Firebase: User found")
             print("PostController: Firebase: \(snapshot)")
-            
-//            // Add all user to dictionary for Swift 4
+
+            // Add all user to dictionary for Swift 4
             if let dictionary = snapshot.value as? NSDictionary {
                 let user = User()
-                
+
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
@@ -116,24 +120,10 @@ class PostController: UITableViewController , PostCellDelegate{
                 print("PostController: tableViewCell: user: \(user.name ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
                 cell.username.text = user.name
                 cell.userEmail.text = user.email
-                cell.consultantRole.text = user.consultantRole
-                
+
                 if user.role == "User" {
                     self.addBtn.isEnabled = false
                 }
-                if user.consultantRole == "Love" {
-                    cell.consultantRole.textColor = UIColor.magenta
-                }
-                else if user.consultantRole == "General" {
-                    cell.consultantRole.textColor = UIColor.green
-                }
-                else if user.consultantRole == "Stress" {
-                    cell.consultantRole.textColor = UIColor.blue
-                }
-                else if user.consultantRole == "Depress" {
-                    cell.consultantRole.textColor = UIColor.red
-                }
-                
                 
                 let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
                 //Observe method to download the data (4MB)
@@ -149,22 +139,12 @@ class PostController: UITableViewController , PostCellDelegate{
                                 //Make circle image
                                 cell.avatar.layer.cornerRadius = cell.avatar.frame.size.width / 2
                                 cell.avatar.clipsToBounds = true
-
                             }
-                            
                         }
                     }
                 }
             }
         }, withCancel: nil)
-       
-
-        if cell.solutionTView.text.count < 100 {
-            cell.show.isEnabled = false
-            cell.show.isHidden = true
-            
-        }
-        cell.delegate = self
         return cell
     }
     
@@ -204,25 +184,6 @@ class PostController: UITableViewController , PostCellDelegate{
     }
     */
 
-    func showDetail(sender: PostCell) {
-        
-                guard let indexPath = tableView.indexPath(for: sender) else {
-                    fatalError("The selected cell is not being displayed by the table")
-                }
-        
-                let detailController = DetailController()
-
-                let selectedPost = posts[indexPath.row]
-                detailController.post = selectedPost
-        
-                print("Post Controller: show Detail ", selectedPost.question)
-        
-                //Go to ChatLogController
-                //navigationController?.pushViewController(detailController, animated: true)
-
-            }
-    
-    
     // MARK: - Navigation
 
 //    // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -233,14 +194,16 @@ class PostController: UITableViewController , PostCellDelegate{
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
+        case "addNewPost":
+            print("adding new post")
+            
         case "showDetail":
-           
             guard let PostDetailViewController = segue.destination as? DetailController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            
+
             guard let selectedPostCell = sender as? PostCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             
             guard let indexPath = tableView.indexPath(for: selectedPostCell) else {
@@ -251,7 +214,7 @@ class PostController: UITableViewController , PostCellDelegate{
             PostDetailViewController.post = selectedPost
         
         default:
-            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
 
 

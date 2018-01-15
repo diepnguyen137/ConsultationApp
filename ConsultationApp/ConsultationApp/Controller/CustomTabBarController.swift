@@ -20,12 +20,12 @@ class CustomTabBarController: UITabBarController {
         
         // Connect PostStoryboard
         let postStoryboard = UIStoryboard(name: "Post", bundle: nil)
-        let postController = postStoryboard.instantiateViewController(withIdentifier: "postNavi")
-        postController.tabBarItem.title = "Post"
+        let postController = postStoryboard.instantiateViewController(withIdentifier: "topicNavi")
+        postController.tabBarItem.title = "Topics"
         postController.tabBarItem.image = UIImage(named: "Post")
         
         // Build TabBar
-        viewControllers = [recentMessagesController, postController]
+        viewControllers = [postController, recentMessagesController]
         
     }
 }

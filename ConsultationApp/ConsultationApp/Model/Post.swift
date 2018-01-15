@@ -22,6 +22,6 @@ class Post:NSObject {
     
     //convert into Dictionary
     func toAnyObject () ->[ String : Any] {
-        return ["question": question ?? "", "answer": solution ?? "", "userID": userID ?? ""]
+        return ["question": question ?? "", "answer": solution ?? "", "userID": userID ?? "","topic": topic ?? ""]
     }
 }
