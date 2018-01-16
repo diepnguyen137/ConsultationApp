@@ -174,7 +174,8 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="j38-qO-XaN">
                             <connections>
-                                <segue destination="LlM-ox-QYR" kind="unwind" unwindAction="unwindToMealListWithSender:" id="ah5-f3-dWd"/>
+                                <action selector="saveBtn:" destination="SN4-5K-MAc" id="ZUG-Kn-1Kv"/>
+                                <segue destination="LlM-ox-QYR" kind="unwind" unwindAction="unwindToCaseListWithSender:" id="Hag-wv-XDH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

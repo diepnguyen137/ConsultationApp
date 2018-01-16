@@ -31,6 +31,11 @@ class EditPostController: UITableViewController {
         
         fetchPostData()
         tableView.allowsMultipleSelectionDuringEditing = true
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,6 +162,10 @@ class EditPostController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let edit
+    }
 
     // MARK: - Action
 //    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
@@ -169,8 +178,10 @@ class EditPostController: UITableViewController {
     
     
     // MARK: - Navigation
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
-        
+    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
+        let indexPath = tableView.indexPathForSelectedRow
+        tableView.reloadRows(at: [indexPath!], with: .none)
+        //refPost.child(key!).setValue(selectedPost.toAnyObject())        
     }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

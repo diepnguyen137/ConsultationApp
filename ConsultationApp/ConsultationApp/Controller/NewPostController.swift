@@ -23,8 +23,6 @@ class NewPostController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var saveBttn: UIBarButtonItem!
     @IBAction func saveBtn(_ sender: Any) {
-        
-       
         //performSegue(withIdentifier: "savedPost", sender: self)
     }
     
@@ -54,6 +52,7 @@ class NewPostController: UIViewController, UITextFieldDelegate {
             navigationItem.title = "Edit Case"
             questionText.text = post.question
             solutionText.text = post.solution
+            print(post.key)
         }
         
         updateSaveButtonState()
@@ -122,17 +121,31 @@ class NewPostController: UIViewController, UITextFieldDelegate {
         }
         print("New PC: Save btn pressed")
         //fetchUser()
-        let key  = postRef.childByAutoId().key
-        let post = Post()
-        post.question = questionText.text
-        post.solution = solutionText.text
-        post.topic = self.topic
-         print("New Post controller: Topic ", self.topic)
-        
-        post.userID = Auth.auth().currentUser?.uid
-        post.key = postRef.childByAutoId().key
-        
-        postRef.child(key).setValue(post.toAnyObject())
+        if post == nil {
+            let key  = postRef.childByAutoId().key
+            let post = Post()
+            post.question = questionText.text
+            post.solution = solutionText.text
+            post.topic = self.topic
+            print("New Post controller: Topic ", self.topic)
+            
+            post.userID = Auth.auth().currentUser?.uid
+            post.key = postRef.childByAutoId().key
+            
+            postRef.child(key).setValue(post.toAnyObject())
+        }
+        else {
+            let key  = self.post?.key
+            let post = Post()
+            post.question = questionText.text
+            post.solution = solutionText.text
+            post.topic = self.topic
+            print("Update Edit Post controller: Topic ", self.topic)
+            
+            post.userID = Auth.auth().currentUser?.uid
+            
+            postRef.child(key!).setValue(post.toAnyObject())
+        }
         
 
     }
