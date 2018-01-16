@@ -12,7 +12,6 @@ class DetailController: UIViewController {
 
     @IBOutlet weak var questionTV: UITextView!
     @IBOutlet weak var solutionTV: UITextView!
-    @IBOutlet weak var questionLabel: UILabel!
     var post:Post?
     
     

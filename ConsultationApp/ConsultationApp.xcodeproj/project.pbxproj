@@ -32,6 +32,7 @@
 		C49F33A62008BF840076EDA0 /* NewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33A52008BF840076EDA0 /* NewPostController.swift */; };
 		C49F33AA2009DE9D0076EDA0 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33A92009DE9D0076EDA0 /* DetailController.swift */; };
 		C49F33AC200C51A60076EDA0 /* TopicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33AB200C51A60076EDA0 /* TopicController.swift */; };
+		C49F33AE200DCA2B0076EDA0 /* EditPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F33AD200DCA2B0076EDA0 /* EditPostController.swift */; };
 		CE17B1E3698D7F68E9947FC6 /* Pods_ConsultationApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */; };
 		ED017BEE38B55BEBE8337F1B /* Pods_ConsultationAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 647957D8C219DBF4B28656A1 /* Pods_ConsultationAppUITests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 		C49F33A52008BF840076EDA0 /* NewPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostController.swift; sourceTree = "<group>"; };
 		C49F33A92009DE9D0076EDA0 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		C49F33AB200C51A60076EDA0 /* TopicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicController.swift; sourceTree = "<group>"; };
+		C49F33AD200DCA2B0076EDA0 /* EditPostController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostController.swift; sourceTree = "<group>"; };
 		C4D6D6FDB655C70009AB4A1F /* Pods_ConsultationApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80EF15ECBFC3A9CCA2A7539 /* Pods_ConsultationAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsultationAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 				C49F33A52008BF840076EDA0 /* NewPostController.swift */,
 				C49F33A92009DE9D0076EDA0 /* DetailController.swift */,
 				8C83FDD62008B14800AF28F7 /* PostController.swift */,
+				C49F33AD200DCA2B0076EDA0 /* EditPostController.swift */,
 				C49F33AB200C51A60076EDA0 /* TopicController.swift */,
 			);
 			path = Controller;
@@ -550,6 +553,7 @@
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
 				8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */,
 				8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */,
+				C49F33AE200DCA2B0076EDA0 /* EditPostController.swift in Sources */,
 				C49F33AA2009DE9D0076EDA0 /* DetailController.swift in Sources */,
 				C49F33A62008BF840076EDA0 /* NewPostController.swift in Sources */,
 				C49F33A22008B5AA0076EDA0 /* Post.swift in Sources */,

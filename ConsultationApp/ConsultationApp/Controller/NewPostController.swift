@@ -11,7 +11,7 @@ import os.log
 import FirebaseDatabase
 import FirebaseAuth
 
-class NewPostController: UIViewController ,UITextFieldDelegate{
+class NewPostController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var questionText: UITextField!
     @IBOutlet weak var solutionText: UITextField!
@@ -21,32 +21,47 @@ class NewPostController: UIViewController ,UITextFieldDelegate{
     
     @IBOutlet weak var saveBttn: UIBarButtonItem!
     @IBAction func saveBtn(_ sender: Any) {
-        let post = Post()
-        post.question = self.questionText.text! as String
-        post.solution = self.solutionText.text! as String
-        post.topic = self.topic
-        post.userID = Auth.auth().currentUser?.uid
         
         let key  = postRef.childByAutoId().key
         postRef.child(key).setValue(self.post?.toAnyObject())
         
-        print("New PC: Save Btn ", self.post?.question)
-        performSegue(withIdentifier: "savedPost", sender: self)
+        print("New PC: Save Btn ", self.post?.question! as Any)
+        //performSegue(withIdentifier: "savedPost", sender: self)
     }
     
     @IBAction func cancelBtn(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddPostMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddPostMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The PostViewController is not inside a navigation controller.")
+        }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        postRef = Database.database().reference().child("posts")
-        
+        print(topic)
         // Enable the Save button only if the text field has a valid question.
-        updateSaveButtonState()
         questionText.delegate = self
         solutionText.delegate = self
+        
+        // Set up views if editing an existing Post.
+        if let post = post {
+            navigationItem.title = "Edit Case"
+            questionText.text = post.question
+            solutionText.text = post.solution
+        }
+        
+        updateSaveButtonState()
+        
+        postRef = Database.database().reference().child("posts")
         // Do any additional setup after loading the view.
     }
 
@@ -56,12 +71,26 @@ class NewPostController: UIViewController ,UITextFieldDelegate{
     }
     
     //MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard.
+        textField.resignFirstResponder()
+        return true
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         // Disable the Save button while editing.
         saveBttn.isEnabled = false
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
+        
+        let post = Post()
+        post.question = self.questionText.text! as String
+        post.solution = self.solutionText.text! as String
+        post.topic = self.topic
+        post.userID = Auth.auth().currentUser?.uid
+        
+        print("NewPostController: Save Btn ", self.post?.question! as Any)
+
     }
     
     
@@ -73,17 +102,16 @@ class NewPostController: UIViewController ,UITextFieldDelegate{
         // Pass the selected object to the new view controller.
         super.prepare(for: segue, sender: sender)
         
-        switch(segue.identifier ?? "") {
-        case "savedPost":
-        guard let PostDetailViewController = segue.destination as? DetailController else {
-            fatalError("Unexpected destination: \(segue.destination)")
-        }
-        
-        PostDetailViewController.post = self.post
-        
-        default:
-        fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
-    }
+//        switch(segue.identifier ?? "") {
+//        case "savedPost":
+//        guard let PostDetailViewController = segue.destination as? DetailController else {
+//            fatalError("Unexpected destination: \(segue.destination)")
+//        }
+//        PostDetailViewController.post = self.post
+//        
+//        default:
+//        fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+//        }
 
     }
     
@@ -91,9 +119,9 @@ class NewPostController: UIViewController ,UITextFieldDelegate{
     //MARK: Private Methods
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
-        if questionText.text != "" && solutionText.text != "" {
-            saveBttn.isEnabled = true
-        }
+        let text1 = questionText.text ?? ""
+        let text2 = solutionText.text ?? ""
+        saveBttn.isEnabled = (!text1.isEmpty && !text2.isEmpty)
         
     }
 }

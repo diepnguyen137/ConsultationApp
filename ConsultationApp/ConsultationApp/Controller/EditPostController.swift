@@ -1,32 +1,31 @@
 //
-//  QuestionTableViewController.swift
-//  Sth2Delete
+//  EditPostController.swift
+//  ConsultationApp
 //
-//  Created by Tony Tom on 1/12/18.
-//  Copyright © 2018 Tran Trong Tri. All rights reserved.
+//  Created by Tony Tom on 1/16/18.
+//  Copyright © 2018 cosc2659. All rights reserved.
 //
 
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
+class EditPostController: UITableViewController {
 
-class PostController: UITableViewController{
-
-    //MARK: Properties
-    
     var user: User?
     var posts = [Post]()
-    var role: String!
     var refPost:DatabaseReference!
     var refUser:DatabaseReference!
-    var topic:String!
     
-    @IBOutlet weak var editBtn: UIBarButtonItem!
+
+    @IBAction func editBtn(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         refPost = Database.database().reference().child("posts")
         refUser = Database.database().reference().child("users")
         
@@ -36,6 +35,9 @@ class PostController: UITableViewController{
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,15 +71,15 @@ class PostController: UITableViewController{
                 post.solution = dictionary["answer"] as? String ?? ""
                 post.userID = dictionary["userID"] as? String ?? ""
                 post.topic = dictionary["topic"] as? String ?? ""
-                
+                post.key = snapshot.key
                 
                 print("Firebase: post: \(post.question ?? "") \(post.solution ?? "") \(post.userID ?? "") \(post.topic ?? "")")
-                print("Firebase: post: Topic: ",self.topic)
                 // Add user to users arraylist
-                if post.topic == self.topic {
+                if(post.userID == "klYNnf72GHZXXmhIsjHRhESSbgS2"){
                     self.posts.append(post)
                     print("Firebase post: Array Post", post)
                 }
+              
                 
                 // Reload data and avoid crashing
                 DispatchQueue.main.async {
@@ -87,43 +89,39 @@ class PostController: UITableViewController{
         }, withCancel: nil)
     }
     
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostCell  else {
-            fatalError("The dequeued cell is not an instance of PostCell.")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "editCell", for: indexPath) as? PostCell  else {
+            fatalError("The dequeued cell is not an instance of EditCell.")
         }
         
         // Fetches the appropriate problem for the data source layout.
         let post = posts[indexPath.row]
         let uid = posts[indexPath.row].userID
-    
+        
         cell.questionTView.text = post.question
         cell.solutionTView.text = post.solution
-
+        
         refUser.child(uid!).observe(.value, with: { (snapshot) in
-
-            print("PostController: Firebase: User found")
-            print("PostController: Firebase: \(snapshot)")
-
+            
+            print("EditPostController: Firebase: User found")
+            print("EditPostController: Firebase: \(snapshot)")
+            
             // Add all user to dictionary for Swift 4
             if let dictionary = snapshot.value as? NSDictionary {
                 let user = User()
-
+                
                 user.name = dictionary["name"] as? String ?? ""
                 user.email = dictionary["email"] as? String ?? ""
                 user.avatar = dictionary["avatar"] as? String ?? ""
                 user.consultantRole = dictionary["consultantRole"] as? String ?? ""
                 user.role = dictionary["role"] as? String ?? ""
-
-
-//                print("PostController: tableViewCell: ", self.user?.name)
+                
+                
+                //                print("PostController: tableViewCell: ", self.user?.name)
                 print("PostController: tableViewCell: user: \(user.name ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
                 cell.username.text = user.name
                 cell.userEmail.text = user.email
-
-                if user.role == "User" {
-                    self.editBtn.isEnabled = false
-                }
                 
                 let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
                 //Observe method to download the data (4MB)
@@ -149,25 +147,24 @@ class PostController: UITableViewController{
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let key  = posts[indexPath.row].key
+            refPost.child(key!).setValue(nil)
+            fetchPostData()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+      
 
     /*
     // Override to support rearranging the table view.
@@ -184,29 +181,30 @@ class PostController: UITableViewController{
     }
     */
 
-//    // MARK: - Action
-//    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
-//
-//    }
-//
+    // MARK: - Action
+    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
+
+    }
+    
+    
     // MARK: - Navigation
 
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
         super.prepare(for: segue, sender: sender)
         
         switch(segue.identifier ?? "") {
-        case "editPost":
+            
+        case "addNewPost":
             print("edit your own posts")
             
-        case "showDetail":
-            guard let PostDetailViewController = segue.destination as? DetailController else {
+        case "editDetail":
+            guard let editDetailViewController = segue.destination as? NewPostController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-
+            
             guard let selectedPostCell = sender as? PostCell else {
                 fatalError("Unexpected sender: \(String(describing: sender))")
             }
@@ -216,13 +214,11 @@ class PostController: UITableViewController{
             }
             
             let selectedPost = posts[indexPath.row]
-            PostDetailViewController.post = selectedPost
-        
+            editDetailViewController.post = selectedPost
+            
         default:
             fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
         }
+    }
 
-
-
-}
 }

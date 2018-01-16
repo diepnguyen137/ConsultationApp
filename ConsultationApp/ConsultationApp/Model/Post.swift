@@ -15,13 +15,14 @@ class Post:NSObject {
     var question: String?
     var solution: String?
     var userID : String?
-    var topic: String? 
+    var topic: String?
+    var key: String?
     
     
     //MARK: Initialization
     
     //convert into Dictionary
     func toAnyObject () ->[ String : Any] {
-        return ["question": question ?? "", "answer": solution ?? "", "userID": userID ?? "","topic": topic ?? ""]
+        return ["question": question ?? "", "answer": solution ?? "", "topic": topic ?? "", "userID": userID ?? ""]
     }
 }
