@@ -25,7 +25,12 @@ class CustomTabBarController: UITabBarController {
         postController.tabBarItem.image = UIImage(named: "Post")
         
         // Build TabBar
-        viewControllers = [recentMessagesController, postController]
+        let controllers =  [recentMessagesController, postController]
+//        viewControllers = controllers
+        setViewControllers(controllers, animated: true)
+        
+        
+        
         
     }
 }

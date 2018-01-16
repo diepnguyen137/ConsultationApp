@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Conntect to CustomeTabBarController
         window?.rootViewController = CustomTabBarController()
         
+        
+        
         return true
     }
 
