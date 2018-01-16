@@ -78,6 +78,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         // Setup keyboard Observe
         setupKeyboardObservers()
+        
     }
     @objc func setupKeyboardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
@@ -101,7 +102,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         // When keybaoard hide
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
-        containerViewBottomAnchor?.constant = 0
+        containerViewBottomAnchor?.constant = -50
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
@@ -193,7 +194,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         // Constraint anchors x,y,w,h for container
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
         containerViewBottomAnchor?.isActive = true
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
