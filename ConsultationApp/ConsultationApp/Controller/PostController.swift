@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseAuth
 
 
 class PostController: UITableViewController{
@@ -21,16 +22,24 @@ class PostController: UITableViewController{
     var refPost:DatabaseReference!
     var refUser:DatabaseReference!
     var topic:String!
+    var uid:String!
     
     @IBOutlet weak var editBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        uid = Auth.auth().currentUser?.uid
+        print("Post controller: View didLoad UID ", uid)
         
         refPost = Database.database().reference().child("posts")
         refUser = Database.database().reference().child("users")
         
         fetchPostData()
+        fetchUser()
+         print("Post controller: View didLoad Role ", self.role)
+      
+        
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -55,6 +64,25 @@ class PostController: UITableViewController{
         return posts.count
     }
 
+    func fetchUser(){
+        refUser.child(self.uid!).observeSingleEvent(of: .value) { (snapshot) in
+            print("Post Controller: Snapshot value: ", snapshot)
+            if let dictionary = snapshot.value as? NSDictionary  {
+                let user = User()
+                user.role = dictionary["role"] as? String ?? ""
+                self.role = user.role
+                
+                if(self.role == "User") {
+                    self.editBtn.isEnabled = false
+                }
+                
+                print("Post controller: User  Role ", user.role)
+                print("Post controller: Topic ", self.role)
+                
+                
+            }
+        }
+    }
     //Firebase fetch data
     func fetchPostData(){
         refPost.observe(.childAdded, with: { (snapshot) in
@@ -120,10 +148,6 @@ class PostController: UITableViewController{
                 print("PostController: tableViewCell: user: \(user.name ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
                 cell.username.text = user.name
                 cell.userEmail.text = user.email
-
-                if user.role == "User" {
-                    self.editBtn.isEnabled = false
-                }
                 
                 let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
                 //Observe method to download the data (4MB)
