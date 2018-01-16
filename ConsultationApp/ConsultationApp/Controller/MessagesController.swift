@@ -169,6 +169,7 @@ class MessagesController: UITableViewController {
         navigationController?.pushViewController(chatLogController, animated: true)
     }
     
+    //FIX ME:
     @objc func handleNewMessage(){
         print("NewMessage: Pressed")
         
@@ -177,6 +178,7 @@ class MessagesController: UITableViewController {
         newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
+        
     }
 
     @objc func handleLogout(){

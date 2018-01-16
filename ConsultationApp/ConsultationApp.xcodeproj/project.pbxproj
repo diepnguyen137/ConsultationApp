@@ -16,6 +16,12 @@
 		841EFEED1FF28976003CD9BF /* ConsultationAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEEC1FF28976003CD9BF /* ConsultationAppTests.swift */; };
 		841EFEF81FF28976003CD9BF /* ConsultationAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */; };
 		841EFF061FF28AE4003CD9BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */; };
+		842399A9200E63DD006C2E7F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399A8200E63DD006C2E7F /* Post.swift */; };
+		842399AE200E63F0006C2E7F /* TopicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399AA200E63F0006C2E7F /* TopicController.swift */; };
+		842399AF200E63F0006C2E7F /* EditPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399AB200E63F0006C2E7F /* EditPostController.swift */; };
+		842399B0200E63F0006C2E7F /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399AC200E63F0006C2E7F /* DetailController.swift */; };
+		842399B1200E63F0006C2E7F /* NewPostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399AD200E63F0006C2E7F /* NewPostController.swift */; };
+		842399B3200E6401006C2E7F /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842399B2200E6401006C2E7F /* PostCell.swift */; };
 		8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0701052005EFE00043D656 /* LogInViewController.swift */; };
 		8C136BAE2004DA250019ED44 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BAD2004DA250019ED44 /* Message.swift */; };
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
@@ -71,6 +77,12 @@
 		841EFEF71FF28976003CD9BF /* ConsultationAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultationAppUITests.swift; sourceTree = "<group>"; };
 		841EFEF91FF28976003CD9BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841EFF051FF28AE3003CD9BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		842399A8200E63DD006C2E7F /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		842399AA200E63F0006C2E7F /* TopicController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicController.swift; sourceTree = "<group>"; };
+		842399AB200E63F0006C2E7F /* EditPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPostController.swift; sourceTree = "<group>"; };
+		842399AC200E63F0006C2E7F /* DetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
+		842399AD200E63F0006C2E7F /* NewPostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostController.swift; sourceTree = "<group>"; };
+		842399B2200E6401006C2E7F /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		88E04ADF6025CFF3E4F23FC3 /* Pods-ConsultationAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationAppTests/Pods-ConsultationAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89009C4D825D5F99873560C6 /* Pods-ConsultationApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsultationApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsultationApp/Pods-ConsultationApp.release.xcconfig"; sourceTree = "<group>"; };
 		8C0701052005EFE00043D656 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +209,7 @@
 		8C136BAF2004FDAB0019ED44 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				842399B2200E6401006C2E7F /* PostCell.swift */,
 				8C2E61852009F940005A6535 /* UserTableViewCell.swift */,
 				8C136BB02004FDEA0019ED44 /* UserCell.swift */,
 				8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */,
@@ -217,6 +230,10 @@
 		8CE074D52000D93200801C14 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				842399AC200E63F0006C2E7F /* DetailController.swift */,
+				842399AB200E63F0006C2E7F /* EditPostController.swift */,
+				842399AD200E63F0006C2E7F /* NewPostController.swift */,
+				842399AA200E63F0006C2E7F /* TopicController.swift */,
 				8C2E61802009F933005A6535 /* RegisterViewController.swift */,
 				8C2E617F2009F932005A6535 /* UserTableViewController.swift */,
 				8C2E61812009F933005A6535 /* ViewController.swift */,
@@ -233,6 +250,7 @@
 		8CE074DA2002629200801C14 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				842399A8200E63DD006C2E7F /* Post.swift */,
 				8CE074DB200262BD00801C14 /* User.swift */,
 				8C136BAD2004DA250019ED44 /* Message.swift */,
 			);
@@ -549,6 +567,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842399AE200E63F0006C2E7F /* TopicController.swift in Sources */,
+				842399B0200E63F0006C2E7F /* DetailController.swift in Sources */,
 				8C2E61842009F933005A6535 /* ViewController.swift in Sources */,
 				8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */,
 				8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */,
@@ -557,14 +577,18 @@
 				8CE074D72000DE7100801C14 /* ChatLogController.swift in Sources */,
 				8C0701062005EFE00043D656 /* LogInViewController.swift in Sources */,
 				8CE074D92000EBD500801C14 /* NewMessageController.swift in Sources */,
+				842399B1200E63F0006C2E7F /* NewPostController.swift in Sources */,
 				8C83FDD72008B14800AF28F7 /* PostController.swift in Sources */,
 				8C83FDD52008AAA900AF28F7 /* CustomTabBarController.swift in Sources */,
 				8CE074DC200262BD00801C14 /* User.swift in Sources */,
 				8C2E61832009F933005A6535 /* RegisterViewController.swift in Sources */,
 				841EFED71FF28975003CD9BF /* MessagesController.swift in Sources */,
 				841EFEDD1FF28975003CD9BF /* ConsultationApp.xcdatamodeld in Sources */,
+				842399AF200E63F0006C2E7F /* EditPostController.swift in Sources */,
 				8C2E618B2009F959005A6535 /* DLRadioButton.m in Sources */,
+				842399A9200E63DD006C2E7F /* Post.swift in Sources */,
 				841EFED51FF28975003CD9BF /* AppDelegate.swift in Sources */,
+				842399B3200E6401006C2E7F /* PostCell.swift in Sources */,
 				8C136BAE2004DA250019ED44 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

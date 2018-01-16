@@ -15,12 +15,14 @@ class CustomTabBarController: UITabBarController {
         // Connect MessagesController
         let messagesController = MessagesController()
         let recentMessagesController = UINavigationController(rootViewController: messagesController)
+//        messagesController.tabBarItem = UITabBarItem.init(tabBarSystemItem: .bookmarks, tag: 0)
         recentMessagesController.tabBarItem.title = "Chat"
         recentMessagesController.tabBarItem.image = UIImage(named: "Chat")
         
         // Connect PostStoryboard
         let postStoryboard = UIStoryboard(name: "Post", bundle: nil)
-        let postController = postStoryboard.instantiateViewController(withIdentifier: "postCV")
+        let postController = postStoryboard.instantiateViewController(withIdentifier: "topicNavi")
+//        postController.tabBarItem = UITabBarItem.init(tabBarSystemItem: .contacts, tag: 1)
         postController.tabBarItem.title = "Post"
         postController.tabBarItem.image = UIImage(named: "Post")
         

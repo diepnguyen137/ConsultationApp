@@ -31,11 +31,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         userTxtField.delegate = self
         passwdTxtField.delegate = self
-  
-        
-        // FIXME: For testing
-        userTxtField.text = adminUsername
-        passwdTxtField.text = adminPass
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +46,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     print("Log in successfully")
                     
                     // TODO: Show MessagesController
-                    let messagesController = UINavigationController(rootViewController: MessagesController())
-                    self.present(messagesController, animated: true, completion: nil)
+                    let customTabBarController = CustomTabBarController()
+                    self.present(customTabBarController, animated: true, completion: nil)
                 }
                 else {
                     print("Account isn't available")
