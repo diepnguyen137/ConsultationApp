@@ -1,10 +1,35 @@
-//
-//  QuestionTableViewController.swift
-//  Sth2Delete
-//
-//  Created by Tony Tom on 1/12/18.
-//  Copyright © 2018 Tran Trong Tri. All rights reserved.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2017C
+ Assignment: 3
+ Author: Ho Phu Thien- Tran Trong Tri- Nguyen Tran Ngoc Diep
+ ID: s3574966-s3533437- s3519039
+ Created date: 26/12/2017
+ Acknowledgement:
+ -Thien
+ Client-side fan-out for data consistency
+ https://firebase.googleblog.com/2015/10/client-side-fan-out-for-data-consistency_73.html
+ Programmatically creating UITabBarController in Swift
+ https://medium.com/ios-os-x-development/programmatically-creating-uitabbarcontroller-in-swift-e957cd35cfc4
+ Programmatically Creating Constraints
+ https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html
+ iOS Notes 19 : How to push and present to ViewController programmatically ? [ How to switch VC ]
+ https://freakycoder.com/ios-notes-19-how-to-push-and-present-to-viewcontroller-programmatically-how-to-switch-vc-8f8f65b55c7b
+ Create UITabBarController programmatically
+ http://swiftdeveloperblog.com/code-examples/create-uitabbarcontroller-programmatically/
+ UINavigationController And UITabBarController Programmatically (Swift 3)
+ https://medium.com/@ITZDERR/uinavigationcontroller-and-uitabbarcontroller-programmatically-swift-3-d85a885a5fd0
+ -Diep
+ Delegate Protocol for custom cell
+ https://www.youtube.com/watch?v=3Rrzm9ZXdds
+ DLRadioButton
+ https://github.com/DavydLiu/DLRadioButton
+ Pass Data Between View Controllers
+ https://www.youtube.com/watch?v=7fbTHFH3tl4
+ -Tri
+ https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214-CH2-SW1
+ */
 
 import UIKit
 import FirebaseDatabase
@@ -36,15 +61,8 @@ class PostController: UITableViewController{
         
         fetchPostData()
         fetchUser()
-         print("Post controller: View didLoad Role ", self.role)
-      
-        
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        print("Post controller: View didLoad Role ", self.role)
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +82,7 @@ class PostController: UITableViewController{
         return posts.count
     }
 
+    //Fetch the current user information
     func fetchUser(){
         refUser.child(self.uid!).observeSingleEvent(of: .value) { (snapshot) in
             print("Post Controller: Snapshot value: ", snapshot)
@@ -72,6 +91,7 @@ class PostController: UITableViewController{
                 user.role = dictionary["role"] as? String ?? ""
                 self.role = user.role
                 
+                //If it is User so the edit button will be disable
                 if(self.role == "User") {
                     self.editBtn.isEnabled = false
                 }
@@ -171,48 +191,6 @@ class PostController: UITableViewController{
         }, withCancel: nil)
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-//    // MARK: - Action
-//    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
-//
-//    }
-//
     // MARK: - Navigation
 
 //    // In a storyboard-based application, you will often want to do a little preparation before navigation

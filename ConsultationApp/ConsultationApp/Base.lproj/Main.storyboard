@@ -54,12 +54,6 @@
                                     <action selector="registerBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m5B-3z-hGI"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="google_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ToC-DG-ZCL">
-                                <rect key="frame" x="153" y="414" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="jvG-Jx-DeI"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -69,11 +63,9 @@
                             <constraint firstItem="riT-OZ-LMH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="3bE-ET-6qy"/>
                             <constraint firstItem="Yp6-WR-Kf3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="4KU-qu-yL6"/>
                             <constraint firstItem="riT-OZ-LMH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Dvs-DV-zbo"/>
-                            <constraint firstItem="ToC-DG-ZCL" firstAttribute="top" secondItem="qHe-T4-kc1" secondAttribute="bottom" constant="23" id="JdF-MA-8vo"/>
+                            <constraint firstItem="Yp6-WR-Kf3" firstAttribute="top" secondItem="qHe-T4-kc1" secondAttribute="bottom" constant="210" id="KTD-mx-Whc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qHe-T4-kc1" secondAttribute="trailing" constant="16" id="MOj-cW-ut7"/>
                             <constraint firstItem="qHe-T4-kc1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="VVF-8f-r2i"/>
-                            <constraint firstItem="Yp6-WR-Kf3" firstAttribute="top" secondItem="ToC-DG-ZCL" secondAttribute="bottom" constant="127" id="Vji-ev-mQi"/>
-                            <constraint firstItem="ToC-DG-ZCL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="153" id="ap7-0b-a6m"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cqs-aw-BRD" secondAttribute="trailing" constant="16" id="ebp-da-ZRW"/>
                             <constraint firstItem="cqs-aw-BRD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="kOl-yO-JaH"/>
                             <constraint firstItem="eJ6-YO-JZe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kpt-RJ-p9N"/>
@@ -81,7 +73,6 @@
                             <constraint firstItem="cqs-aw-BRD" firstAttribute="top" secondItem="riT-OZ-LMH" secondAttribute="bottom" constant="13" id="mUF-E2-PS3"/>
                             <constraint firstItem="qHe-T4-kc1" firstAttribute="top" secondItem="cqs-aw-BRD" secondAttribute="bottom" constant="62" id="r67-Wi-u8M"/>
                             <constraint firstItem="eJ6-YO-JZe" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rpK-jd-sZJ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ToC-DG-ZCL" secondAttribute="trailing" constant="162" id="uV4-X7-gjx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -389,6 +380,5 @@
     <resources>
         <image name="Image" width="256" height="256"/>
         <image name="background" width="512" height="382"/>
-        <image name="google_icon" width="106" height="106"/>
     </resources>
 </document>

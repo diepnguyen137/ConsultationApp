@@ -1,11 +1,35 @@
-//
-//  EditPostController.swift
-//  ConsultationApp
-//
-//  Created by Tony Tom on 1/16/18.
-//  Copyright © 2018 cosc2659. All rights reserved.
-//
-
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2017C
+ Assignment: 3
+ Author: Ho Phu Thien- Tran Trong Tri- Nguyen Tran Ngoc Diep
+ ID: s3574966-s3533437- s3519039
+ Created date: 26/12/2017
+ Acknowledgement:
+ -Thien
+ Client-side fan-out for data consistency
+ https://firebase.googleblog.com/2015/10/client-side-fan-out-for-data-consistency_73.html
+ Programmatically creating UITabBarController in Swift
+ https://medium.com/ios-os-x-development/programmatically-creating-uitabbarcontroller-in-swift-e957cd35cfc4
+ Programmatically Creating Constraints
+ https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html
+ iOS Notes 19 : How to push and present to ViewController programmatically ? [ How to switch VC ]
+ https://freakycoder.com/ios-notes-19-how-to-push-and-present-to-viewcontroller-programmatically-how-to-switch-vc-8f8f65b55c7b
+ Create UITabBarController programmatically
+ http://swiftdeveloperblog.com/code-examples/create-uitabbarcontroller-programmatically/
+ UINavigationController And UITabBarController Programmatically (Swift 3)
+ https://medium.com/@ITZDERR/uinavigationcontroller-and-uitabbarcontroller-programmatically-swift-3-d85a885a5fd0
+ -Diep
+ Delegate Protocol for custom cell
+ https://www.youtube.com/watch?v=3Rrzm9ZXdds
+ DLRadioButton
+ https://github.com/DavydLiu/DLRadioButton
+ Pass Data Between View Controllers
+ https://www.youtube.com/watch?v=7fbTHFH3tl4
+ -Tri
+ https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214-CH2-SW1
+ */
 import UIKit
 import FirebaseDatabase
 import FirebaseStorage
@@ -95,11 +119,13 @@ class EditPostController: UITableViewController {
         
         // Fetches the appropriate problem for the data source layout.
         let post = posts[indexPath.row]
+        //Take UID of the consultant who create the post
         let uid = posts[indexPath.row].userID
         
         cell.questionTView.text = post.question
         cell.solutionTView.text = post.solution
         
+        //Fetch user information that create the post
         refUser.child(uid!).observe(.value, with: { (snapshot) in
             
             print("EditPostController: Firebase: User found")
@@ -116,11 +142,11 @@ class EditPostController: UITableViewController {
                 user.role = dictionary["role"] as? String ?? ""
                 
                 
-                //                print("PostController: tableViewCell: ", self.user?.name)
                 print("PostController: tableViewCell: user: \(user.name ?? "") \(user.email ?? "") \(user.consultantRole ?? "")")
                 cell.username.text = user.name
                 cell.userEmail.text = user.email
                 
+                //Download avatar image from Firebase Storage
                 let imgStorageRef = Storage.storage().reference(forURL: user.avatar!)
                 //Observe method to download the data (4MB)
                 imgStorageRef.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
@@ -154,6 +180,7 @@ class EditPostController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        //Delete post from database
         if editingStyle == .delete {
             let key  = posts[indexPath.row].key
             refPost.child(key!).setValue(nil)
@@ -162,20 +189,7 @@ class EditPostController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let edit
-    }
 
-    // MARK: - Action
-//    @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
-//        let indexPath = tableView.indexPathForSelectedRow
-//        let selectedPost = posts[(indexPath?.row)!]
-//        let key = selectedPost.key
-//        refPost.child(key!).setValue(selectedPost.toAnyObject())
-        
-//    }
-    
     
     // MARK: - Navigation
     @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {

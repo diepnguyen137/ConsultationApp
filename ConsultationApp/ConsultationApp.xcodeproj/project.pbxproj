@@ -27,7 +27,6 @@
 		8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C136BB02004FDEA0019ED44 /* UserCell.swift */; };
 		8C2E61822009F933005A6535 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E617F2009F932005A6535 /* UserTableViewController.swift */; };
 		8C2E61832009F933005A6535 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61802009F933005A6535 /* RegisterViewController.swift */; };
-		8C2E61842009F933005A6535 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61812009F933005A6535 /* ViewController.swift */; };
 		8C2E61862009F940005A6535 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61852009F940005A6535 /* UserTableViewCell.swift */; };
 		8C2E618B2009F959005A6535 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2E61882009F959005A6535 /* DLRadioButton.m */; };
 		8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C83FDD22007895E00AF28F7 /* ChatMessageCell.swift */; };
@@ -90,7 +89,6 @@
 		8C136BB02004FDEA0019ED44 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		8C2E617F2009F932005A6535 /* UserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 		8C2E61802009F933005A6535 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		8C2E61812009F933005A6535 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8C2E61852009F940005A6535 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		8C2E61882009F959005A6535 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		8C2E61892009F959005A6535 /* ConsultationApp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ConsultationApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				842399AA200E63F0006C2E7F /* TopicController.swift */,
 				8C2E61802009F933005A6535 /* RegisterViewController.swift */,
 				8C2E617F2009F932005A6535 /* UserTableViewController.swift */,
-				8C2E61812009F933005A6535 /* ViewController.swift */,
 				8C83FDD62008B14800AF28F7 /* PostController.swift */,
 				8C0701052005EFE00043D656 /* LogInViewController.swift */,
 				841EFED61FF28975003CD9BF /* MessagesController.swift */,
@@ -569,7 +566,6 @@
 			files = (
 				842399AE200E63F0006C2E7F /* TopicController.swift in Sources */,
 				842399B0200E63F0006C2E7F /* DetailController.swift in Sources */,
-				8C2E61842009F933005A6535 /* ViewController.swift in Sources */,
 				8C136BB12004FDEA0019ED44 /* UserCell.swift in Sources */,
 				8C83FDD32007895E00AF28F7 /* ChatMessageCell.swift in Sources */,
 				8C2E61822009F933005A6535 /* UserTableViewController.swift in Sources */,
