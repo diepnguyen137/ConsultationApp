@@ -194,7 +194,7 @@ class EditPostController: UITableViewController {
     // MARK: - Navigation
     @IBAction func unwindToCaseList(sender: UIStoryboardSegue) {
         let indexPath = tableView.indexPathForSelectedRow
-        tableView.reloadRows(at: [indexPath!], with: .none)
+        //tableView.reloadRows(at: [indexPath!], with: .none)
         //refPost.child(key!).setValue(selectedPost.toAnyObject())        
     }
 

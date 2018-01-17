@@ -93,6 +93,9 @@ class RegisterViewController: UIViewController, UIImagePickerControllerDelegate,
                                 let key = newUser?.uid as String?
                                 self.refUser.child(key!).setValue(user.toAnyObject())
                                 print("RegisterViewController: Register Successfully")
+                                // TODO: Show MessagesController
+                                let customTabBarController = CustomTabBarController()
+                                self.present(customTabBarController, animated: true, completion: nil)
                             }
                         })
                     }
